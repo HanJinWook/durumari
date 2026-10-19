@@ -1,0 +1,1894 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>두루마리 — 마음을 두루 말아 전하는 롤링페이퍼</title>
+    <meta name="description" content="학교 친구, 회사 동료, 소중한 모임까지. 여럿의 마음을 한 장의 두루마리에 말아 전하는 감성 롤링페이퍼 서비스, 두루마리." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&family=Nanum+Pen+Script&family=Gaegu:wght@400;700&family=Gamja+Flower&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #faf4e8;
+        --bg-soft: #f3ead9;
+        --surface: #fffdf6;
+        --surface-2: #fff8ea;
+        --ink: #33302a;
+        --ink-soft: #6f675a;
+        --line: #e7dcc6;
+        --accent: #d9501e;
+        --accent-deep: #b23c12;
+        --accent-soft: #fdeadd;
+        --gold: #c99a2e;
+        --sage: #5d7d5a;
+        --shadow: 0 10px 30px rgba(94, 70, 34, .12);
+        --shadow-sm: 0 3px 10px rgba(94, 70, 34, .10);
+        --radius: 18px;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #221e1a;
+          --bg-soft: #2a251f;
+          --surface: #2e2924;
+          --surface-2: #352f28;
+          --ink: #f1e9db;
+          --ink-soft: #bcae99;
+          --line: #453c31;
+          --accent: #ff7a45;
+          --accent-deep: #ffa07a;
+          --accent-soft: #453026;
+          --gold: #dfae4e;
+          --sage: #9dc493;
+          --shadow: 0 10px 30px rgba(0,0,0,.4);
+          --shadow-sm: 0 3px 10px rgba(0,0,0,.35);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Gowun Dodum", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+      }
+      body::before {
+        content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+        background-image: radial-gradient(rgba(160,120,60,.10) 1px, transparent 1.4px);
+        background-size: 22px 22px;
+      }
+      .wrap { max-width: 1140px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+      h1, h2, h3 { font-family: "Gowun Batang", serif; line-height: 1.3; margin: 0; }
+      p { margin: 0; }
+      a { color: var(--accent-deep); }
+      button { font-family: inherit; cursor: pointer; }
+      input, textarea, select { font-family: inherit; }
+
+      /* ---------- header ---------- */
+      header.site {
+        position: sticky; top: 0; z-index: 60;
+        background: color-mix(in srgb, var(--bg) 88%, transparent);
+        backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px dashed var(--line);
+      }
+      .header-in { display: flex; align-items: center; gap: 18px; height: 64px; }
+      .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+      .logo-mark { width: 38px; height: 38px; flex: none; }
+      .logo-name { font-family: "Gowun Batang", serif; font-weight: 700; font-size: 24px; letter-spacing: .02em; }
+      .logo-name em { font-style: normal; color: var(--accent); }
+      .logo-tag { font-size: 11px; color: var(--ink-soft); display: block; line-height: 1.2; margin-top: -3px; }
+      nav.main { margin-left: auto; display: flex; gap: 4px; align-items: center; }
+      nav.main a {
+        color: var(--ink); text-decoration: none; font-size: 14.5px; padding: 8px 11px; border-radius: 999px; white-space: nowrap;
+      }
+      nav.main a:hover { background: var(--accent-soft); }
+      .btn {
+        display: inline-flex; align-items: center; gap: 7px; border: none; border-radius: 999px;
+        padding: 11px 20px; font-size: 15px; font-weight: 700; text-decoration: none;
+        transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+      }
+      .btn:active { transform: scale(.97); }
+      .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 6px 16px rgba(217,80,30,.30); }
+      .btn-primary:hover { background: var(--accent-deep); }
+      .btn-ghost { background: var(--surface); color: var(--ink); border: 1.5px solid var(--line); }
+      .btn-ghost:hover { border-color: var(--accent); color: var(--accent-deep); }
+      .btn-sm { padding: 8px 15px; font-size: 13.5px; }
+      @media (max-width: 760px) {
+        nav.main a:not(.keep) { display: none; }
+        nav.main a.keep:not(.btn) { display: none; }
+        nav.main .btn { padding: 8px 13px; font-size: 13px; }
+        .logo-name { font-size: 21px; }
+        .logo-mark { width: 32px; height: 32px; }
+        .logo-tag { display: none; }
+      }
+
+      /* ---------- hero ---------- */
+      .hero { padding: 64px 0 30px; text-align: center; position: relative; }
+      .hero .ribbon {
+        display: inline-block; background: var(--accent-soft); color: var(--accent-deep);
+        border: 1px dashed var(--accent); border-radius: 999px; padding: 5px 14px; font-size: 13px; margin-bottom: 20px;
+      }
+      .hero h1 { font-size: clamp(34px, 6vw, 56px); font-weight: 700; }
+      .hero h1 .hl { color: var(--accent); position: relative; white-space: nowrap; }
+      .hero h1 .hl::after {
+        content: ""; position: absolute; left: 0; right: 0; bottom: 4px; height: 10px; z-index: -1;
+        background: #ffd9a8; opacity: .65; border-radius: 4px;
+      }
+      @media (prefers-color-scheme: dark) { .hero h1 .hl::after { background: #7a4a22; } }
+      .hero .sub { margin: 20px auto 0; max-width: 620px; color: var(--ink-soft); font-size: 16.5px; }
+      .hero .cta { margin-top: 28px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+      .hero-scroll {
+        margin: 44px auto 0; max-width: 760px; position: relative;
+        filter: drop-shadow(0 16px 24px rgba(94,70,34,.18));
+      }
+      .scroll-paper {
+        background: linear-gradient(180deg, #fffdf4, #fdf3da);
+        border-radius: 6px; padding: 28px 30px 24px; position: relative; color: #4a4033;
+      }
+      .scroll-paper::before, .scroll-paper::after {
+        content: ""; position: absolute; top: -14px; bottom: -14px; width: 30px;
+        background: linear-gradient(90deg, #b98a4a, #e5c07c 45%, #a5763a);
+        border-radius: 15px; box-shadow: inset 0 0 0 2px rgba(90,60,20,.25);
+      }
+      .scroll-paper::before { left: -16px; } .scroll-paper::after { right: -16px; }
+      .scroll-paper .to { font-family: "Nanum Pen Script", cursive; font-size: 26px; color: #b23c12; }
+      .scroll-paper .msg { font-family: "Nanum Pen Script", cursive; font-size: 21px; line-height: 1.5; margin-top: 6px; }
+      .scroll-paper .from { text-align: right; font-family: "Gaegu", cursive; font-size: 16px; color: #8a7a5f; margin-top: 8px; }
+      .hero-notes { display: flex; gap: 8px; justify-content: center; margin-top: 10px; flex-wrap: wrap; }
+      .hero-notes span { font-family: "Gaegu", cursive; font-size: 15px; background: #fff3b0; color: #5c5322; padding: 3px 10px; border-radius: 4px; transform: rotate(-2deg); box-shadow: var(--shadow-sm); }
+      .hero-notes span:nth-child(2) { background: #ffd6e0; transform: rotate(1.6deg); color: #6e2f42; }
+      .hero-notes span:nth-child(3) { background: #cdeac0; transform: rotate(-1deg); color: #33512c; }
+
+      /* ---------- sections ---------- */
+      section.block { padding: 56px 0 8px; }
+      .sec-head { text-align: center; margin-bottom: 28px; }
+      .sec-head .kicker { font-size: 13px; color: var(--accent); font-weight: 700; letter-spacing: .14em; }
+      .sec-head h2 { font-size: clamp(25px, 4vw, 34px); margin-top: 6px; }
+      .sec-head p { color: var(--ink-soft); margin-top: 8px; font-size: 15.5px; }
+
+      /* ---------- studio ---------- */
+      .studio {
+        background: var(--surface); border: 1px solid var(--line); border-radius: 26px;
+        box-shadow: var(--shadow); padding: 22px; position: relative;
+      }
+      .studio-grid { display: grid; grid-template-columns: 340px 1fr; gap: 22px; }
+      @media (max-width: 900px) { .studio-grid { grid-template-columns: 1fr; } .studio { padding: 16px; } }
+      .panel h3 { font-size: 18px; margin-bottom: 4px; }
+      .panel .hint { font-size: 13px; color: var(--ink-soft); margin-bottom: 14px; }
+      .field { margin-bottom: 15px; }
+      .field label { display: block; font-size: 13.5px; font-weight: 700; margin-bottom: 6px; }
+      .field input[type="text"], .field textarea {
+        width: 100%; border: 1.5px solid var(--line); border-radius: 12px; background: var(--surface-2);
+        padding: 11px 13px; font-size: 15px; color: var(--ink); outline: none; resize: vertical;
+      }
+      .field input[type="text"]:focus, .field textarea:focus { border-color: var(--accent); background: var(--surface); }
+      .field textarea { min-height: 96px; line-height: 1.55; }
+      .char-count { text-align: right; font-size: 12px; color: var(--ink-soft); margin-top: 4px; }
+      .theme-chips, .font-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+      .chip {
+        border: 1.5px solid var(--line); background: var(--surface); color: var(--ink);
+        border-radius: 999px; padding: 7px 13px; font-size: 14px; transition: all .13s ease;
+      }
+      .chip:hover { border-color: var(--accent); }
+      .chip.on { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 700; }
+      .chip .lock { font-size: 11px; margin-left: 3px; }
+      .swatches { display: flex; gap: 8px; flex-wrap: wrap; }
+      .swatch { width: 34px; height: 34px; border-radius: 50%; border: 2px solid rgba(0,0,0,.10); padding: 0; position: relative; }
+      .swatch.on { border-color: var(--accent); box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--accent); }
+      .emoji-row, .sticker-row { display: flex; flex-wrap: wrap; gap: 5px; }
+      .emoji-row button, .sticker-row button {
+        border: 1px solid var(--line); background: var(--surface-2); border-radius: 10px;
+        font-size: 19px; width: 40px; height: 40px; display: grid; place-items: center; padding: 0;
+        transition: transform .1s ease, border-color .1s ease;
+      }
+      .emoji-row button:hover, .sticker-row button:hover { transform: translateY(-2px); border-color: var(--accent); }
+      .sticker-row button.on { background: var(--accent-soft); border-color: var(--accent); box-shadow: inset 0 0 0 1.5px var(--accent); }
+      .sticker-row button.locked { opacity: .55; }
+      .preview-note {
+        border-radius: 3px; padding: 16px 17px 13px; min-height: 108px; position: relative;
+        background: linear-gradient(175deg, #fffefb, #fdf8ec);
+        box-shadow: var(--shadow-sm); border: 1px solid #eee3cb; color: #3d382e;
+      }
+      .preview-note .pv-text { font-size: 19px; line-height: 1.45; white-space: pre-wrap; word-break: break-word; min-height: 52px; }
+      .preview-note .pv-from { text-align: right; font-size: 14px; opacity: .75; margin-top: 6px; }
+      .font-pen { font-family: "Nanum Pen Script", cursive; }
+      .font-gaegu { font-family: "Gaegu", cursive; }
+      .font-gamja { font-family: "Gamja Flower", cursive; }
+      .font-dodum { font-family: "Gowun Dodum", sans-serif; }
+      .pv-text.font-pen { font-size: 23px; } .pv-text.font-gamja { font-size: 21px; }
+      .add-btn { width: 100%; justify-content: center; margin-top: 4px; }
+
+      /* board = desk + one big sheet of paper */
+      .board-zone { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+      .board-toolbar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+      .board-toolbar .count { font-size: 13.5px; color: var(--ink-soft); }
+      .board-toolbar .spacer { flex: 1; }
+      .board {
+        position: relative; border-radius: 14px; padding: 20px;
+        transition: background .35s ease; border: 1px solid rgba(0,0,0,.06);
+      }
+      @media (max-width: 560px) { .board { padding: 12px; } }
+      .sheet {
+        position: relative; border-radius: 3px; min-height: 620px; overflow: hidden;
+        background:
+          radial-gradient(rgba(120,100,60,.05) 1px, transparent 1.3px) 0 0 / 22px 22px,
+          linear-gradient(175deg, #fffefb 0%, #fdfaf1 55%, #faf4e3 100%);
+        box-shadow: 0 18px 38px rgba(50,38,16,.28), 0 3px 8px rgba(50,38,16,.18);
+        color: #3c372e;
+      }
+      .sheet::before, .sheet::after { /* washi tape on the top corners */
+        content: ""; position: absolute; top: -4px; width: 92px; height: 26px; z-index: 4;
+        background: var(--tape, rgba(255,214,120,.75));
+        border-left: 1px dashed rgba(0,0,0,.10); border-right: 1px dashed rgba(0,0,0,.10);
+        opacity: .85;
+      }
+      .sheet::before { left: 26px; transform: rotate(-4deg); }
+      .sheet::after { right: 26px; transform: rotate(3deg); }
+      .board-head {
+        position: relative; z-index: 3; text-align: center; padding: 30px 16px 4px; pointer-events: none;
+      }
+      .board-head .b-to {
+        font-family: "Nanum Pen Script", cursive; font-weight: 400;
+        font-size: clamp(32px, 4.6vw, 44px); color: var(--head-ink, #b23c12); line-height: 1.15;
+      }
+      .board-head .b-sub { font-size: 13.5px; color: #8a7c64; margin-top: 2px; }
+      .note {
+        position: absolute; padding: 4px 6px; cursor: grab; touch-action: none;
+        border-radius: 6px; transition: background .15s ease;
+      }
+      .note:active { cursor: grabbing; }
+      .note:hover { background: rgba(255, 244, 200, .35); }
+      .note.focused { background: rgba(255, 240, 190, .45); outline: 1.5px dashed rgba(178,60,18,.55); outline-offset: 3px; }
+      .note .n-stickers { position: absolute; top: -14px; right: -8px; font-size: 19px; letter-spacing: 1px; transform: rotate(6deg); pointer-events: none; }
+      .note .n-text { line-height: 1.42; white-space: pre-wrap; word-break: keep-all; overflow-wrap: break-word; }
+      .note .n-from { text-align: right; opacity: .78; margin-top: 5px; font-size: .78em; }
+      .note .n-del {
+        position: absolute; top: -10px; left: -10px; border: none; background: #fffdf6;
+        width: 22px; height: 22px; border-radius: 50%; font-size: 12px; color: #b23c12; display: none; place-items: center; padding: 0;
+        box-shadow: 0 2px 6px rgba(60,45,20,.25); z-index: 5;
+      }
+      .note:hover .n-del, .note:focus-within .n-del { display: grid; }
+      @media (hover: none) { .note .n-del { display: grid; opacity: .8; } }
+      .f-sticker {
+        position: absolute; z-index: 6; cursor: grab; touch-action: none; line-height: 1;
+        filter: drop-shadow(0 3px 4px rgba(60,45,20,.25)); user-select: none; -webkit-user-select: none;
+      }
+      .f-sticker:active { cursor: grabbing; }
+      .f-sticker .fs-del {
+        position: absolute; top: -9px; right: -9px; border: none; background: #fffdf6;
+        width: 20px; height: 20px; border-radius: 50%; font-size: 11px; color: #b23c12; display: none; place-items: center; padding: 0;
+        box-shadow: 0 2px 6px rgba(60,45,20,.25); cursor: pointer;
+      }
+      .f-sticker:hover .fs-del, .f-sticker:focus-within .fs-del { display: grid; }
+      @media (hover: none) { .f-sticker .fs-del { display: grid; opacity: .85; } }
+
+      /* desk themes (the paper stays one big white sheet) */
+      .board[data-theme="school"] { background: #2e5a4c radial-gradient(rgba(255,255,255,.06) 1px, transparent 1.3px); background-size: auto, 20px 20px; --tape: rgba(190,230,190,.8); --head-ink: #2e6b4f; }
+      .board[data-theme="office"] { background: #b9c9d8 radial-gradient(rgba(70,100,140,.12) 1px, transparent 1.3px); background-size: auto, 18px 18px; --tape: rgba(170,200,235,.8); --head-ink: #33549e; }
+      .board[data-theme="party"] { background: #f6c3d5 radial-gradient(rgba(230,90,140,.16) 2px, transparent 2.6px); background-size: auto, 26px 26px; --tape: rgba(255,183,213,.85); --head-ink: #c2437a; }
+      .board[data-theme="friends"] { background: #e8cd6d radial-gradient(rgba(200,150,20,.14) 1.5px, transparent 2px); background-size: auto, 22px 22px; --tape: rgba(255,236,160,.9); --head-ink: #a86e12; }
+      .board[data-theme="family"] { background: #d9b28c radial-gradient(rgba(170,100,50,.12) 1px, transparent 1.3px); background-size: auto, 20px 20px; --tape: rgba(250,214,180,.85); --head-ink: #b0561e; }
+      .board-empty {
+        position: absolute; inset: 120px 20px 30px; display: grid; place-items: center; text-align: center;
+        font-size: 15px; color: #9a8a6d; z-index: 1; padding: 0 16px; font-family: "Nanum Pen Script", cursive; font-size: 22px;
+      }
+      .board-empty[hidden] { display: none; }
+
+      /* time capsule */
+      .capsule-area { display: none; }
+      .capsule-area.show { display: block; }
+      .capsule-card {
+        display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
+        background: var(--surface); border: 1.5px dashed var(--gold); border-radius: var(--radius);
+        padding: 16px 20px; box-shadow: var(--shadow-sm);
+      }
+      .capsule-card .cap-visual { font-size: 34px; line-height: 1; }
+      .capsule-card h4 { margin: 0; font-family: "Gowun Batang", serif; font-size: 16.5px; }
+      .capsule-card p { font-size: 13px; color: var(--ink-soft); }
+      .capsule-card .cap-actions { margin-left: auto; }
+      .seal-stage { display: none; }
+      .seal-stage.show { display: block; }
+      .seal-scroll {
+        margin: 10px auto 4px; width: 240px; height: 58px; border-radius: 29px; position: relative;
+        background: linear-gradient(180deg, #fdf3da, #f3dfae);
+        box-shadow: inset 0 -10px 16px rgba(160,110,40,.35), inset 0 8px 12px rgba(255,255,255,.8), var(--shadow-sm);
+        display: grid; place-items: center; color: #8a5a1d; font-family: "Nanum Pen Script", cursive; font-size: 21px;
+      }
+      .seal-scroll::before, .seal-scroll::after {
+        content: ""; position: absolute; top: -6px; bottom: -6px; width: 22px; border-radius: 11px;
+        background: linear-gradient(90deg, #b98a4a, #e5c07c 45%, #a5763a);
+      }
+      .seal-scroll::before { left: -12px; } .seal-scroll::after { right: -12px; }
+      .seal-scroll.rolling { animation: rollShrink 1s ease forwards; }
+      @keyframes rollShrink {
+        0% { transform: scaleX(1) rotate(0deg); }
+        55% { transform: scaleX(.55) rotate(-2deg); }
+        100% { transform: scaleX(.55) rotate(-2deg) translateY(2px); }
+      }
+      .wax-seal {
+        position: absolute; right: 34px; top: 50%; width: 52px; height: 52px; border-radius: 50%;
+        background: radial-gradient(circle at 35% 30%, #e86a4e, #b23c12 62%, #8f2c0c);
+        color: #ffe9d6; display: grid; place-items: center; font-family: "Gowun Batang", serif; font-weight: 700; font-size: 19px;
+        box-shadow: inset 0 -4px 8px rgba(0,0,0,.30), inset 0 3px 5px rgba(255,255,255,.35), 0 4px 10px rgba(120,40,10,.35);
+        transform: translateY(-50%) scale(2.6); opacity: 0;
+      }
+      .wax-seal.stamp { animation: stampIn .45s cubic-bezier(.2,1.6,.4,1) forwards; }
+      @keyframes stampIn {
+        0% { transform: translateY(-50%) scale(2.6); opacity: 0; }
+        70% { transform: translateY(-50%) scale(.92); opacity: 1; }
+        100% { transform: translateY(-50%) scale(1); opacity: 1; }
+      }
+      .seal-steps { list-style: none; margin: 16px auto 0; padding: 0; display: grid; gap: 6px; font-size: 14px; color: var(--ink-soft); max-width: 280px; text-align: left; }
+      .seal-steps li { opacity: .32; transition: opacity .3s ease; }
+      .seal-steps li.done { opacity: 1; color: var(--ink); }
+      .seal-steps li.done::before { content: "✓ "; color: var(--sage); font-weight: 700; }
+      .seal-form { text-align: left; margin-top: 14px; }
+      .seal-form label { display: block; font-size: 13.5px; font-weight: 700; margin-bottom: 6px; }
+      .seal-form input[type="email"] {
+        width: 100%; border: 1.5px solid var(--line); border-radius: 12px; background: var(--surface-2);
+        padding: 11px 13px; font-size: 15px; color: var(--ink); outline: none;
+      }
+      .seal-form input[type="email"]:focus { border-color: var(--accent); }
+      .seal-form .open-date {
+        margin-top: 10px; background: var(--accent-soft); border-radius: 10px; padding: 9px 12px;
+        font-size: 13.5px; color: var(--accent-deep); text-align: center;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .seal-scroll.rolling, .wax-seal.stamp { animation-duration: .01s; }
+      }
+
+      /* inbox */
+      .inbox-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+      @media (max-width: 860px) { .inbox-grid { grid-template-columns: 1fr; } }
+      .paper-card {
+        background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+        padding: 20px; box-shadow: var(--shadow-sm); text-align: left; width: 100%; color: var(--ink);
+        transition: transform .15s ease, box-shadow .15s ease; position: relative; overflow: hidden;
+      }
+      .paper-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+      .paper-card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 7px; background: var(--pc, var(--accent)); }
+      .paper-card .pc-theme { font-size: 12px; font-weight: 700; color: var(--accent-deep); letter-spacing: .06em; }
+      .paper-card h3 { font-size: 19px; margin: 5px 0 4px; }
+      .paper-card p { font-size: 13.5px; color: var(--ink-soft); }
+      .paper-card .pc-meta { display: flex; gap: 12px; margin-top: 12px; font-size: 12.5px; color: var(--ink-soft); }
+      .paper-card .pc-open { margin-top: 12px; font-size: 13.5px; font-weight: 700; color: var(--accent-deep); }
+
+      /* steps */
+      .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+      @media (max-width: 860px) { .steps { grid-template-columns: 1fr; } }
+      .step {
+        background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px;
+      }
+      .step .num {
+        width: 34px; height: 34px; border-radius: 50%; background: var(--accent); color: #fff;
+        display: grid; place-items: center; font-family: "Gowun Batang", serif; font-weight: 700; margin-bottom: 12px;
+      }
+      .step h3 { font-size: 17.5px; margin-bottom: 6px; }
+      .step p { font-size: 14px; color: var(--ink-soft); }
+
+      /* pricing */
+      .price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: stretch; }
+      @media (max-width: 900px) { .price-grid { grid-template-columns: 1fr; } }
+      .price-card {
+        background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 26px 24px;
+        display: flex; flex-direction: column; box-shadow: var(--shadow-sm);
+      }
+      .price-card.hot { border: 2px solid var(--accent); position: relative; }
+      .price-card .badge {
+        position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+        background: var(--accent); color: #fff; font-size: 12px; font-weight: 700; padding: 4px 13px; border-radius: 999px; white-space: nowrap;
+      }
+      .price-card h3 { font-size: 19px; }
+      .price-card .price { font-family: "Gowun Batang", serif; font-size: 30px; font-weight: 700; margin: 10px 0 2px; }
+      .price-card .price small { font-size: 13px; color: var(--ink-soft); font-family: "Gowun Dodum", sans-serif; font-weight: 400; }
+      .price-card ul { list-style: none; margin: 16px 0 20px; padding: 0; display: grid; gap: 9px; font-size: 14px; flex: 1; }
+      .price-card ul li { padding-left: 22px; position: relative; }
+      .price-card ul li::before { content: "✿"; position: absolute; left: 0; color: var(--accent); }
+      .price-card ul li.off { color: var(--ink-soft); }
+      .price-card ul li.off::before { content: "–"; color: var(--ink-soft); }
+      .rev-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 22px; }
+      @media (max-width: 760px) { .rev-grid { grid-template-columns: 1fr; } }
+      .rev-item { background: var(--surface-2); border: 1px dashed var(--line); border-radius: var(--radius); padding: 18px 20px; }
+      .rev-item h4 { margin: 0 0 5px; font-size: 15.5px; font-family: "Gowun Batang", serif; }
+      .rev-item p { font-size: 13.5px; color: var(--ink-soft); }
+
+      /* competitors */
+      .comp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      @media (max-width: 860px) { .comp-grid { grid-template-columns: 1fr; } }
+      .comp-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow-sm); }
+      .comp-card.me { border: 2px solid var(--accent); background: var(--surface-2); }
+      .comp-card h3 { font-size: 18px; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+      .comp-card h3 .tag { font-size: 11.5px; background: var(--accent-soft); color: var(--accent-deep); border-radius: 999px; padding: 2px 9px; font-family: "Gowun Dodum", sans-serif; }
+      .comp-card .desc { font-size: 14px; color: var(--ink-soft); margin: 8px 0 12px; }
+      .comp-card ul { margin: 0; padding-left: 18px; font-size: 14px; display: grid; gap: 5px; }
+      .comp-note { text-align: center; font-size: 13px; color: var(--ink-soft); margin-top: 16px; }
+
+      /* name story */
+      .name-box {
+        background: var(--surface); border: 1px solid var(--line); border-radius: 26px; padding: 30px;
+        display: grid; grid-template-columns: 1fr 1fr; gap: 28px; box-shadow: var(--shadow-sm);
+      }
+      @media (max-width: 860px) { .name-box { grid-template-columns: 1fr; padding: 24px; } }
+      .name-box h3 { font-size: 21px; margin-bottom: 10px; }
+      .name-box p { font-size: 14.5px; color: var(--ink-soft); }
+      .name-box .big-word { font-family: "Gowun Batang", serif; font-size: 44px; font-weight: 700; color: var(--ink); }
+      .name-box .big-word em { font-style: normal; color: var(--accent); }
+      .cand-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; font-size: 14.5px; }
+      .cand-list li { display: flex; gap: 9px; align-items: baseline; }
+      .cand-list b { font-family: "Gowun Batang", serif; white-space: nowrap; }
+      .cand-list span { color: var(--ink-soft); font-size: 13.5px; }
+      .cand-list .win { color: var(--accent-deep); font-weight: 700; font-size: 12px; border: 1px solid var(--accent); border-radius: 999px; padding: 1px 8px; white-space: nowrap; }
+
+      /* invite link bar */
+      .invite-bar {
+        display: flex; gap: 14px; align-items: center; flex-wrap: wrap;
+        background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+        padding: 14px 18px; box-shadow: var(--shadow-sm);
+      }
+      .invite-bar .inv-info { min-width: 210px; flex: 1; }
+      .invite-bar .inv-label { font-size: 12px; font-weight: 700; color: var(--accent-deep); letter-spacing: .05em; }
+      .invite-bar .inv-link {
+        font-family: "Gowun Batang", serif; font-weight: 700; font-size: 19px; color: var(--ink);
+        display: block; line-height: 1.3; word-break: break-all;
+      }
+      .invite-bar .inv-desc { font-size: 12.5px; color: var(--ink-soft); display: block; }
+      .invite-bar .inv-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+      .btn-kakao {
+        background: #fee500; color: #3a1d1d; border: none; box-shadow: 0 4px 12px rgba(220,180,0,.35);
+      }
+      .btn-kakao:hover { background: #f5dc00; }
+      .guest-banner {
+        display: none; align-items: center; gap: 10px; flex-wrap: wrap;
+        background: var(--accent-soft); border: 1.5px dashed var(--accent); border-radius: var(--radius);
+        padding: 12px 16px; font-size: 14px;
+      }
+      .guest-banner.show { display: flex; }
+      .guest-banner b { color: var(--accent-deep); }
+      .guest-banner .spacer { flex: 1; }
+
+      /* profile + membership tabs */
+      .profile-card {
+        display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
+        background: var(--surface); border: 1px solid var(--line); border-radius: 22px;
+        padding: 20px 22px; box-shadow: var(--shadow-sm); margin-bottom: 16px;
+      }
+      .profile-card .avatar {
+        width: 52px; height: 52px; border-radius: 50%; flex: none;
+        background: var(--accent); color: #fff; display: grid; place-items: center;
+        font-family: "Gowun Batang", serif; font-weight: 700; font-size: 22px;
+      }
+      .profile-card h3 { font-size: 18px; }
+      .profile-card .p-sub { font-size: 13px; color: var(--ink-soft); }
+      .profile-card .member-chips { display: flex; gap: 7px; flex-wrap: wrap; margin-left: auto; }
+      .inbox-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+      .inbox-tabs .tab {
+        border: 1.5px solid var(--line); background: var(--surface); color: var(--ink);
+        border-radius: 999px; padding: 8px 16px; font-size: 14px; transition: all .13s ease;
+      }
+      .inbox-tabs .tab:hover { border-color: var(--accent); }
+      .inbox-tabs .tab.on { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 700; }
+      .paper-card .pc-group { font-size: 12px; color: var(--ink-soft); margin-top: 2px; }
+
+      /* mutual rolling requests */
+      .request-list { display: grid; gap: 12px; margin-top: 16px; }
+      .request-card {
+        display: flex; gap: 14px; align-items: center; flex-wrap: wrap;
+        background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+        padding: 16px 20px; box-shadow: var(--shadow-sm);
+      }
+      .request-card .rq-icon { font-size: 26px; line-height: 1; }
+      .request-card h4 { margin: 0; font-family: "Gowun Batang", serif; font-size: 16px; }
+      .request-card p { font-size: 13px; color: var(--ink-soft); }
+      .request-card .rq-status {
+        font-size: 12px; font-weight: 700; border-radius: 999px; padding: 3px 11px;
+        background: var(--accent-soft); color: var(--accent-deep); white-space: nowrap;
+      }
+      .request-card .rq-status.done { background: #e4f0e0; color: #3f7a4e; }
+      @media (prefers-color-scheme: dark) { .request-card .rq-status.done { background: #2c4030; color: #9dc493; } }
+      .request-card .rq-actions { margin-left: auto; display: flex; gap: 8px; flex-wrap: wrap; }
+      .req-link-box {
+        margin-top: 14px; background: var(--surface-2); border: 1px dashed var(--line); border-radius: 12px;
+        padding: 12px 14px; font-size: 14px;
+      }
+      .req-link-box .rl { font-family: "Gowun Batang", serif; font-weight: 700; font-size: 17px; word-break: break-all; }
+
+      footer.site { margin-top: 70px; border-top: 1px dashed var(--line); padding: 34px 0 46px; }
+      .foot-in { display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start; }
+      .foot-in .f-about { max-width: 420px; font-size: 13.5px; color: var(--ink-soft); }
+      .foot-links { margin-left: auto; display: flex; gap: 22px; font-size: 13.5px; }
+      .foot-links a { color: var(--ink-soft); text-decoration: none; }
+      .foot-links a:hover { color: var(--accent-deep); }
+      .copyright { margin-top: 22px; font-size: 12.5px; color: var(--ink-soft); text-align: center; }
+
+      /* modal + toast */
+      .overlay {
+        position: fixed; inset: 0; background: rgba(43,32,20,.55); z-index: 100;
+        display: none; align-items: center; justify-content: center; padding: 18px;
+      }
+      .overlay.open { display: flex; }
+      .modal {
+        background: var(--surface); color: var(--ink); border-radius: 24px; max-width: 430px; width: 100%;
+        padding: 30px 26px; text-align: center; box-shadow: var(--shadow); max-height: 88vh; overflow: auto;
+      }
+      .modal h3 { font-size: 23px; margin-bottom: 8px; }
+      .modal p { font-size: 14.5px; color: var(--ink-soft); }
+      .modal .m-actions { display: flex; gap: 9px; margin-top: 20px; justify-content: center; flex-wrap: wrap; }
+      .rolled {
+        margin: 8px auto 16px; width: 230px; height: 54px; border-radius: 27px; position: relative;
+        background: linear-gradient(180deg, #fdf3da, #f7e3b8);
+        box-shadow: inset 0 -10px 16px rgba(160,110,40,.35), inset 0 8px 12px rgba(255,255,255,.8), var(--shadow-sm);
+        display: grid; place-items: center; color: #8a5a1d; font-family: "Nanum Pen Script", cursive; font-size: 21px;
+      }
+      .rolled::before, .rolled::after {
+        content: ""; position: absolute; top: -6px; bottom: -6px; width: 22px; border-radius: 11px;
+        background: linear-gradient(90deg, #b98a4a, #e5c07c 45%, #a5763a);
+      }
+      .rolled::before { left: -12px; } .rolled::after { right: -12px; }
+      .rolled .ribbon-knot {
+        position: absolute; right: 30px; top: 50%; transform: translateY(-50%);
+        width: 10px; height: 40px; background: var(--accent); border-radius: 5px; opacity: .9;
+      }
+      .toast {
+        position: fixed; left: 50%; bottom: 26px; transform: translate(-50%, 80px); z-index: 120;
+        background: var(--ink); color: var(--bg); padding: 12px 20px; border-radius: 999px; font-size: 14px;
+        box-shadow: var(--shadow); transition: transform .3s ease; max-width: calc(100vw - 40px); text-align: center;
+      }
+      .toast.show { transform: translate(-50%, 0); }
+      .confetti { position: fixed; top: -12px; z-index: 110; pointer-events: none; border-radius: 2px; }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        .confetti { display: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap header-in">
+        <a class="logo" href="#top" aria-label="두루마리 홈">
+          <svg class="logo-mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+            <rect x="6" y="10" width="6" height="28" rx="3" fill="#c99a2e"/>
+            <rect x="36" y="10" width="6" height="28" rx="3" fill="#c99a2e"/>
+            <path d="M12 13h24v22H12z" fill="#fdf3da" stroke="#d9c08a" stroke-width="1.5"/>
+            <path d="M17 20c3-2 5 2 8 0s5 2 6 1" stroke="#d9501e" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M17 26c3-2 5 2 8 0s5 2 6 1" stroke="#5d7d5a" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M17 32c2.4-1.6 4 1.2 6.4.4" stroke="#c99a2e" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+          <span>
+            <span class="logo-name">두루<em>마리</em></span>
+            <span class="logo-tag">마음을 두루 말아 전하는 롤링페이퍼</span>
+          </span>
+        </a>
+        <nav class="main">
+          <a href="#studio">만들기</a>
+          <a href="#inbox">받은 두루마리</a>
+          <a href="#premium">프리미엄</a>
+          <a href="#market" class="keep">시장 분석</a>
+          <a href="#studio" class="btn btn-primary btn-sm keep">무료로 시작하기</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- HERO -->
+      <div class="wrap">
+        <div class="hero">
+          <span class="ribbon">✎ 온라인 롤링페이퍼 서비스</span>
+          <h1>마음을 <span class="hl">두루 말아</span>,<br />소중한 사람에게 전하세요</h1>
+          <p class="sub">종이 롤링페이퍼를 돌리던 그 설렘 그대로. 학교 친구들, 회사 동료들, 우리 모임의 마음이
+            커다란 전지 한 장에 차곡차곡 적혀요. 링크 하나로 모으고, 스티커로 꾸미고,
+            원하면 타임캡슐에 봉인해 1년 뒤에 다시 열어 볼 수도 있어요.</p>
+          <div class="cta">
+            <a class="btn btn-primary" href="#studio">두루마리 만들기</a>
+            <a class="btn btn-ghost" href="#inbox">받은 두루마리 열기</a>
+          </div>
+          <div class="hero-scroll" aria-hidden="true">
+            <div class="scroll-paper">
+              <div class="to">To. 민준이에게</div>
+              <div class="msg">3년 동안 같은 반이라서 정말 행복했어. 네 웃음소리 덕분에 월요일도 버틸 수 있었거든.
+                졸업해도 우리 우정은 계속 두루두루 이어지자!</div>
+              <div class="from">— 반장 지민이가</div>
+            </div>
+          </div>
+          <div class="hero-notes" aria-hidden="true">
+            <span>항상 고마웠어요!</span><span>새 출발 응원해 🎉</span><span>밥 한 번 꼭 먹자 🍀</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- STUDIO -->
+      <section class="block" id="studio">
+        <div class="wrap">
+          <div class="sec-head">
+            <div class="kicker">ROLLING STUDIO</div>
+            <h2>두루마리 스튜디오</h2>
+            <p>커다란 흰 전지 한 장에 여럿이 둘러앉아 적듯, 형식 없이 자유롭게 마음을 적어 보세요. 글은 전지 위에 드래그로 옮길 수 있어요.</p>
+          </div>
+          <div class="studio">
+            <div class="studio-grid">
+              <!-- composer panel -->
+              <div class="panel">
+                <h3>쪽지 쓰기</h3>
+                <p class="hint">형식은 없어요. 큰 전지에 자유롭게 적듯이, 마음 가는 대로 써 보세요.</p>
+                <div class="field">
+                  <label for="recipient">받는 분</label>
+                  <input type="text" id="recipient" maxlength="20" value="김민준 님" />
+                </div>
+                <div class="field">
+                  <label>모임 테마</label>
+                  <div class="theme-chips" id="themeChips">
+                    <button type="button" class="chip" data-theme="school">🎓 학교 · 졸업</button>
+                    <button type="button" class="chip on" data-theme="office">💼 회사 · 퇴사</button>
+                    <button type="button" class="chip" data-theme="party">🎂 생일 · 축하</button>
+                    <button type="button" class="chip" data-theme="friends">🧸 동아리 · 친구</button>
+                    <button type="button" class="chip" data-theme="family">🏠 가족 · 기념일</button>
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="author">내 이름 (서명)</label>
+                  <input type="text" id="author" maxlength="16" placeholder="예) 같은 팀 서연" />
+                </div>
+                <div class="field">
+                  <label for="message">마음 전하기</label>
+                  <textarea id="message" maxlength="200" placeholder="평소엔 쑥스러워서 못 했던 말, 여기에 살짝 적어 보세요."></textarea>
+                  <div class="char-count"><span id="charCount">0</span> / 200</div>
+                </div>
+                <div class="field">
+                  <label>이모지 넣기 <span style="font-weight:400;color:var(--ink-soft)">(누르면 글에 쏙 들어가요)</span></label>
+                  <div class="emoji-row" id="emojiRow"></div>
+                </div>
+                <div class="field">
+                  <label>종이에 스티커 붙이기 <span style="font-weight:400;color:var(--ink-soft)">(누르면 전지 위에 바로 붙어요 · 드래그로 이동)</span></label>
+                  <div class="sticker-row" id="stickerRow"></div>
+                </div>
+                <div class="field">
+                  <label>펜 색상 &amp; 글씨체</label>
+                  <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start">
+                    <div class="swatches" id="swatches"></div>
+                    <div class="font-chips" id="fontChips">
+                      <button type="button" class="chip on" data-font="font-pen">손글씨</button>
+                      <button type="button" class="chip" data-font="font-gaegu">동글동글</button>
+                      <button type="button" class="chip" data-font="font-gamja">꽃글씨</button>
+                      <button type="button" class="chip" data-font="font-dodum">또박또박</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="field">
+                  <label>미리보기</label>
+                  <div class="preview-note" id="previewNote">
+                    <div class="pv-text font-pen" id="pvText">여기에 마음이 미리 보여요.</div>
+                    <div class="pv-from" id="pvFrom">— 나</div>
+                  </div>
+                </div>
+                <button type="button" class="btn btn-primary add-btn" id="addNoteBtn">✎ 전지에 적기</button>
+              </div>
+
+              <!-- board -->
+              <div class="board-zone">
+                <div class="board-toolbar">
+                  <strong id="boardTitle">김민준 님의 두루마리</strong>
+                  <span class="count" id="noteCount"></span>
+                  <span class="spacer"></span>
+                  <button type="button" class="btn btn-ghost btn-sm" id="shuffleBtn">다시 흩뿌리기</button>
+                  <button type="button" class="btn btn-primary btn-sm" id="rollBtn">두루마리 말기 🎀</button>
+                </div>
+                <div class="guest-banner" id="guestBanner">
+                  <span>💌 <b id="guestHost">김민준 님</b>이 초대한 두루마리예요. 가입 없이 바로 글을 쓸 수 있어요.</span>
+                  <span class="spacer"></span>
+                  <button type="button" class="btn btn-ghost btn-sm" id="exitGuestBtn">초대 화면 나가기</button>
+                </div>
+                <div class="board" id="board" data-theme="office">
+                  <div class="sheet" id="sheet">
+                    <div class="board-head">
+                      <div class="b-to" id="boardTo">To. 김민준 님</div>
+                      <div class="b-sub" id="boardSub">💼 회사 · 퇴사 — 그동안 함께여서 든든했어요</div>
+                    </div>
+                    <div class="board-empty" id="boardEmpty" hidden>아직 아무도 적지 않았어요.<br />첫 마음을 전지에 남겨 보세요.</div>
+                  </div>
+                </div>
+                <div class="invite-bar">
+                  <div class="inv-info">
+                    <span class="inv-label">🔗 원링크 초대</span>
+                    <span class="inv-link" id="inviteLink">duru.mari/p/·····</span>
+                    <span class="inv-desc">이 링크 하나로 초대 끝. 받은 친구는 가입 없이 바로 글을 쓸 수 있어요.</span>
+                  </div>
+                  <div class="inv-actions">
+                    <button type="button" class="btn btn-primary btn-sm" id="copyLinkBtn">링크 복사</button>
+                    <button type="button" class="btn btn-kakao btn-sm" id="kakaoShareBtn">카카오톡 공유</button>
+                    <button type="button" class="btn btn-ghost btn-sm" id="guestPreviewBtn">친구 화면 미리보기</button>
+                  </div>
+                </div>
+                <div class="capsule-area" id="capsuleArea"></div>
+                <p style="font-size:12.5px;color:var(--ink-soft)">※ 지금 보고 있는 화면은 두루마리 체험판이에요. 적은 글과 타임캡슐 예약은 이 기기에만 머물고, 새로고침하면 처음 상태로 돌아갑니다.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- INBOX -->
+      <section class="block" id="inbox">
+        <div class="wrap">
+          <div class="sec-head">
+            <div class="kicker">MY SCROLLS</div>
+            <h2>내가 받은 두루마리</h2>
+            <p>누군가 당신을 위해 말아 둔 마음들. 카드를 누르면 두루마리가 펼쳐집니다.</p>
+          </div>
+          <div class="profile-card">
+            <div class="avatar" aria-hidden="true">민</div>
+            <div>
+              <h3>김민지 님의 보관함</h3>
+              <p class="p-sub">한 사람이 여러 모임에 속하듯, 두루마리도 모임별로 모여요.</p>
+            </div>
+            <div class="member-chips theme-chips" id="memberChips"></div>
+          </div>
+          <div class="inbox-tabs" id="inboxTabs"></div>
+          <div class="inbox-grid" id="inboxGrid"></div>
+          <h3 style="font-family:'Gowun Batang',serif;font-size:20px;margin:34px 0 4px">맞롤링페이퍼 요청함</h3>
+          <p style="font-size:13.5px;color:var(--ink-soft)">내가 써준 만큼, 나도 받아 보는 거예요. 주고받은 요청이 여기에 모입니다.</p>
+          <div class="request-list" id="requestList"></div>
+        </div>
+      </section>
+
+      <!-- STEPS -->
+      <section class="block">
+        <div class="wrap">
+          <div class="sec-head">
+            <div class="kicker">HOW IT WORKS</div>
+            <h2>세 단계면 충분해요</h2>
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="num">1</div>
+              <h3>두루마리를 펼치세요</h3>
+              <p>받는 사람과 모임을 정하면 테마가 자동으로 달라져요. 학교는 칠판, 회사는 오피스, 생일은 파티 무드로요.</p>
+            </div>
+            <div class="step">
+              <div class="num">2</div>
+              <h3>링크 하나로 모으세요</h3>
+              <p>단톡방에 링크만 던지면 끝. 회원가입 없이 누구나 쪽지를 붙이고, 스티커와 이모지로 마음을 꾸밀 수 있어요.</p>
+            </div>
+            <div class="step">
+              <div class="num">3</div>
+              <h3>말아서 건네세요 — 혹은 봉인하세요</h3>
+              <p>약속한 날 두루마리를 건네거나, 타임캡슐에 봉인해 1년 뒤 이메일로 다시 열어 보세요. 시간이 지난 만큼 감동도 깊어져요.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PREMIUM -->
+      <section class="block" id="premium">
+        <div class="wrap">
+          <div class="sec-head">
+            <div class="kicker">PREMIUM</div>
+            <h2>마음을 더 특별하게, 두루마리 프리미엄</h2>
+            <p>기본은 평생 무료. 더 깊이 간직하고 싶은 순간을 위한 선택지를 준비했어요.</p>
+          </div>
+          <div class="price-grid">
+            <div class="price-card">
+              <h3>무료</h3>
+              <div class="price">0원 <small>/ 평생</small></div>
+              <ul>
+                <li>두루마리 만들기 무제한</li>
+                <li>기본 테마 5종 · 스티커 12종</li>
+                <li>쪽지 최대 50장</li>
+                <li>타임캡슐 봉인 연 1회</li>
+                <li class="off">프리미엄 테마 · 시즌 스티커 팩</li>
+                <li class="off">실물 인쇄 · 배송</li>
+              </ul>
+              <a class="btn btn-ghost" href="#studio" style="justify-content:center">무료로 시작하기</a>
+            </div>
+            <div class="price-card hot">
+              <span class="badge">가장 많이 선택해요</span>
+              <h3>프리미엄</h3>
+              <div class="price">3,900원 <small>/ 월 (연 결제 시 월 2,900원)</small></div>
+              <ul>
+                <li>프리미엄 테마 20종 + 시즌 한정 테마</li>
+                <li>스티커 팩 전체 + 움직이는 스티커</li>
+                <li>쪽지 무제한 · 사진 쪽지 첨부</li>
+                <li>공개 예약 · 비밀번호 두루마리</li>
+                <li>타임캡슐 무제한 · 열리는 날짜 자유 지정</li>
+                <li>광고 없이, 영구 보관함</li>
+              </ul>
+              <button type="button" class="btn btn-primary" data-premium style="justify-content:center">프리미엄 시작하기</button>
+            </div>
+            <div class="price-card">
+              <h3>실물 제작</h3>
+              <div class="price">19,900원 <small>/ 건부터</small></div>
+              <ul>
+                <li>완성된 두루마리를 실제 종이로 인쇄</li>
+                <li>두루마리 족자 · 포스터 · 하드커버 책자</li>
+                <li>선물 포장 + 손글씨 카드 동봉</li>
+                <li>졸업식 · 퇴사 당일 도착 예약 배송</li>
+                <li class="off">단체 · 기업 전사 이벤트 (별도 문의)</li>
+              </ul>
+              <button type="button" class="btn btn-ghost" data-premium style="justify-content:center">실물로 만들어 보기</button>
+            </div>
+          </div>
+          <div class="rev-grid">
+            <div class="rev-item">
+              <h4>🎁 선물 함께 보내기</h4>
+              <p>두루마리를 열면 꽃다발, 케이크 기프티콘을 함께 전할 수 있는 제휴 선물 옵션. 마음을 전하는 김에 선물까지 한 번에 끝나요.</p>
+            </div>
+            <div class="rev-item">
+              <h4>🏢 단체 · 기업 플랜</h4>
+              <p>신입 환영, 승진, 장기근속, 퇴사까지. 인사팀이 전사 이벤트를 한 번에 굴릴 수 있는 관리자 플랜 (인당 과금).</p>
+            </div>
+            <div class="rev-item">
+              <h4>🎓 학교 · 졸업 시즌 팩</h4>
+              <p>졸업 시즌 반 전체 두루마리를 한 번에 만드는 담임 선생님용 클래스 팩. 학급 단위 묶음 결제로 매년 돌아오는 수요를 잡아요.</p>
+            </div>
+            <div class="rev-item">
+              <h4>✿ 스티커 · 테마 상점</h4>
+              <p>인기 일러스트레이터와 협업한 한정 스티커 팩과 테마를 낱개로 파는 인앱 상점. 꾸미기 좋아하는 사용자의 자발적 결제가 일어나요.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MARKET -->
+      <section class="block" id="market">
+        <div class="wrap">
+          <div class="sec-head">
+            <div class="kicker">MARKET &amp; COMPETITORS</div>
+            <h2>경쟁 서비스, 솔직히 살펴봤어요</h2>
+            <p>비슷한 서비스가 아예 없는 건 아니에요. 다만 '한국식 롤링페이퍼의 감성'을 제대로 파는 곳은 아직 없습니다.</p>
+          </div>
+          <div class="comp-grid">
+            <div class="comp-card me">
+              <h3>두루마리 <span class="tag">이 서비스</span></h3>
+              <p class="desc">한국의 롤링페이퍼 문화를 그대로 옮긴 감성 특화 서비스. 모임별 테마와 한국어 손글씨 꾸미기에 집중합니다.</p>
+              <ul>
+                <li>학교 · 회사 · 생일 · 동아리 · 가족 — 모임별 전용 테마</li>
+                <li>한국어 손글씨 폰트와 스티커로 꾸미는 쪽지</li>
+                <li>링크 하나로 비회원도 바로 참여</li>
+                <li>디지털 보관 + 실물 족자 · 책자 제작까지</li>
+              </ul>
+            </div>
+            <div class="comp-card">
+              <h3>롤링페이퍼 (rollingpaper.site) <span class="tag">국내</span></h3>
+              <p class="desc">국내에 실제로 운영 중인 온라인 롤링페이퍼 서비스. 온라인 롤링페이퍼 수요가 존재한다는 걸 보여 주는 선행 사례예요.</p>
+              <ul>
+                <li>링크 공유 방식의 온라인 롤링페이퍼 제공</li>
+                <li>기능과 디자인이 단순한 편 — 꾸미기 · 테마 차별화 여지 큼</li>
+                <li>인지도가 낮아 시장이 아직 초기 단계</li>
+              </ul>
+            </div>
+            <div class="comp-card">
+              <h3>Kudoboard · GroupTogether <span class="tag">해외</span></h3>
+              <p class="desc">해외에서는 '그룹 카드'가 이미 큰 시장. Kudoboard는 기업용 연 구독 모델로 자리 잡았고, GroupTogether는 선물 모금까지 묶었어요.</p>
+              <ul>
+                <li>직장 내 생일 · 퇴사 · 기념일 카드에 특화</li>
+                <li>인쇄 책자 · 포스터 배송으로 수익화 검증됨</li>
+                <li>영어권 직장 문화 중심 — 한국어 감성과는 거리감</li>
+              </ul>
+            </div>
+            <div class="comp-card">
+              <h3>인쇄 도안 · 종이 롤링페이퍼 <span class="tag">기존 대안</span></h3>
+              <p class="desc">지금 대부분의 사람들은 미리캔버스 · 캔바 도안을 출력하거나, 종이를 직접 돌려 씁니다. 익숙하지만 한계가 분명해요.</p>
+              <ul>
+                <li>비대면 · 원격 모임에서는 아예 불가능</li>
+                <li>한 명이 취합 · 출력 · 전달까지 떠안는 수고</li>
+                <li>분실하면 끝 — 다시 볼 방법이 없음</li>
+              </ul>
+            </div>
+          </div>
+          <p class="comp-note">참고: <a href="https://rollingpaper.site/" target="_blank" rel="noopener">rollingpaper.site</a> ·
+            <a href="http://www.kudoboard.com/blog/what-is-a-group-ecard/" target="_blank" rel="noopener">Kudoboard 그룹 카드 소개</a> ·
+            <a href="https://www.grouptogether.com/us/blog/best-website-to-create-a-group-greeting-card/" target="_blank" rel="noopener">GroupTogether</a> (2026년 10월 확인)</p>
+        </div>
+      </section>
+
+      <!-- NAME STORY -->
+      <section class="block" id="name">
+        <div class="wrap">
+          <div class="sec-head">
+            <div class="kicker">NAMING</div>
+            <h2>왜 '두루마리'인가요?</h2>
+          </div>
+          <div class="name-box">
+            <div>
+              <div class="big-word">두루<em>마리</em></div>
+              <h3 style="margin-top:10px">마음을 두루마리에 말아 전한다</h3>
+              <p>'두루'는 빠짐없이 모두, 구석구석이라는 뜻의 우리말이에요. 친구 한 명, 동료 한 명의 마음을
+                빠짐없이 <b>두루</b> 모아, 두루마리처럼 돌돌 <b>말아</b> 전한다는 의미를 담았습니다.
+                롤링페이퍼가 사실 두루마리와 똑같이 '말아서 전하는 종이'라는 점도 이름과 딱 맞아떨어져요.
+                짧고, 한 번 들으면 기억나고, "두루마리 하나 말아줄게"처럼 일상 문장으로도 자연스럽게 쓰이는 이름입니다.</p>
+            </div>
+            <div>
+              <h3>함께 검토한 후보들</h3>
+              <ul class="cand-list">
+                <li><b>두루마리</b> <span class="win">최종 선정</span> <span>한국어 정서 + '말아 전한다'는 행위까지 담은 이름</span></li>
+                <li><b>마음롤링</b> <span>직관적이지만 검색하면 담배용 지(롤링 페이퍼)와 섞임</span></li>
+                <li><b>쪽지모아</b> <span>친근하지만 롤링페이퍼 특유의 '펼치는 감동'이 약함</span></li>
+                <li><b>롤링레터</b> <span>무난하지만 영어 이름이라 감성 · 차별성이 부족</span></li>
+                <li><b>마음족자</b> <span>재미있지만 '족자'가 젊은 층에겐 낯선 단어</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site">
+      <div class="wrap">
+        <div class="foot-in">
+          <div>
+            <a class="logo" href="#top">
+              <svg class="logo-mark" viewBox="0 0 48 48" fill="none" aria-hidden="true" style="width:32px;height:32px">
+                <rect x="6" y="10" width="6" height="28" rx="3" fill="#c99a2e"/>
+                <rect x="36" y="10" width="6" height="28" rx="3" fill="#c99a2e"/>
+                <path d="M12 13h24v22H12z" fill="#fdf3da" stroke="#d9c08a" stroke-width="1.5"/>
+                <path d="M17 20c3-2 5 2 8 0s5 2 6 1" stroke="#d9501e" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M17 26c3-2 5 2 8 0s5 2 6 1" stroke="#5d7d5a" stroke-width="2.2" stroke-linecap="round"/>
+              </svg>
+              <span class="logo-name" style="font-size:20px">두루<em>마리</em></span>
+            </a>
+            <p class="f-about" style="margin-top:10px">두루마리는 여럿의 마음을 한 장에 말아 전하는 온라인 롤링페이퍼 서비스입니다.
+              졸업, 퇴사, 생일, 그리고 말 못 할 고마움이 있는 모든 날에.</p>
+          </div>
+          <div class="foot-links">
+            <a href="#studio">두루마리 만들기</a>
+            <a href="#inbox">받은 두루마리</a>
+            <a href="#premium">프리미엄</a>
+            <a href="#market">시장 분석</a>
+          </div>
+        </div>
+        <p class="copyright">© 2026 두루마리 (Durumari) — 마음을 두루 말아 전합니다.</p>
+      </div>
+    </footer>
+
+    <!-- roll-up / time capsule modal -->
+    <div class="overlay" id="rollOverlay" role="dialog" aria-modal="true" aria-labelledby="rollTitle">
+      <div class="modal">
+        <!-- stage 1: choose -->
+        <div id="rollStageMain">
+          <div class="rolled"><span id="rolledName">김민준 님</span><span class="ribbon-knot"></span></div>
+          <h3 id="rollTitle">두루마리가 말렸어요</h3>
+          <p id="rollDesc">쪽지 0장이 정성껏 말려, 받을 준비를 마쳤습니다.</p>
+          <p style="margin-top:10px">지금 바로 건넬 수도 있고, 타임캡슐에 봉인해 <b>1년 뒤</b>에 다시 열어 볼 수도 있어요.</p>
+          <div class="m-actions">
+            <button type="button" class="btn btn-primary btn-sm" id="toSealBtn">🕰 1년 뒤 열어보기 (타임캡슐)</button>
+            <button type="button" class="btn btn-ghost btn-sm" id="toRequestBtn">↩ 상대에게도 써달라고 요청하기</button>
+            <button type="button" class="btn btn-ghost btn-sm" id="copyInviteBtn">초대 문구 복사하기</button>
+            <button type="button" class="btn btn-ghost btn-sm" data-close>계속 꾸미기</button>
+          </div>
+        </div>
+        <!-- stage 1b: mutual rolling request -->
+        <div id="rollStageRequest" class="seal-stage">
+          <div style="font-size:34px" aria-hidden="true">↩</div>
+          <h3>맞롤링페이퍼 요청하기</h3>
+          <p>내가 <b id="reqTargetName">김민준 님</b>에게 써준 만큼, 나를 위한 두루마리도 부탁해 보세요.
+            아래 원링크를 보내면 상대는 가입 없이 바로 내 두루마리에 글을 쓸 수 있어요.</p>
+          <div class="req-link-box">
+            <span style="font-size:12px;font-weight:700;color:var(--accent-deep)">내 두루마리 요청 링크</span>
+            <div class="rl" id="requestLink">duru.mari/r/·····</div>
+          </div>
+          <div class="m-actions">
+            <button type="button" class="btn btn-primary btn-sm" id="sendRequestBtn">요청 보내기</button>
+            <button type="button" class="btn btn-kakao btn-sm" id="kakaoRequestBtn">카카오톡으로 요청</button>
+            <button type="button" class="btn btn-ghost btn-sm" id="copyRequestBtn">링크 복사</button>
+            <button type="button" class="btn btn-ghost btn-sm" id="backFromRequestBtn">돌아가기</button>
+          </div>
+        </div>
+        <!-- stage 2: capsule form -->
+        <div id="rollStageForm" class="seal-stage">
+          <h3>타임캡슐에 봉인하기</h3>
+          <p>봉인된 두루마리는 아래 날짜에, 남겨 주신 이메일로 다시 열려요.<br />그때까지는 아무도 열어 볼 수 없습니다.</p>
+          <div class="seal-form">
+            <label for="capsuleEmail">1년 뒤 두루마리를 받을 이메일</label>
+            <input type="email" id="capsuleEmail" placeholder="예) friend@example.com" autocomplete="email" />
+            <div class="open-date">🔒 봉인일: <span id="sealToday"></span> · 열리는 날: <b id="sealOpenDate"></b></div>
+          </div>
+          <div class="m-actions">
+            <button type="button" class="btn btn-primary btn-sm" id="doSealBtn">봉인하기</button>
+            <button type="button" class="btn btn-ghost btn-sm" id="backToMainBtn">돌아가기</button>
+          </div>
+          <p style="margin-top:12px;font-size:12px">체험판에서는 봉인 연출까지만 구현돼 있어요. 실제 이메일 발송은 정식 출시 때 서버에서 처리됩니다.</p>
+        </div>
+        <!-- stage 3: sealing animation -->
+        <div id="rollStageSeal" class="seal-stage">
+          <h3>타임캡슐에 봉인하는 중…</h3>
+          <div style="position:relative;margin-top:26px;margin-bottom:8px">
+            <div class="seal-scroll" id="sealScroll"><span id="sealScrollName">김민준 님</span></div>
+            <div class="wax-seal" id="waxSeal">봉</div>
+          </div>
+          <ul class="seal-steps">
+            <li id="sealStep1">두루마리를 돌돌 말았어요</li>
+            <li id="sealStep2">봉인 도장을 찍었어요</li>
+            <li id="sealStep3">타임캡슐에 넣었어요</li>
+          </ul>
+        </div>
+        <!-- stage 4: done -->
+        <div id="rollStageDone" class="seal-stage">
+          <div style="font-size:38px" aria-hidden="true">🕰</div>
+          <h3>봉인 완료!</h3>
+          <p id="sealDoneDesc">두루마리가 타임캡슐에 안전하게 봉인됐습니다.</p>
+          <div class="m-actions">
+            <button type="button" class="btn btn-primary btn-sm" data-close>확인</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- premium modal -->
+    <div class="overlay" id="premiumOverlay" role="dialog" aria-modal="true" aria-labelledby="premiumTitle">
+      <div class="modal">
+        <div style="font-size:38px" aria-hidden="true">🎀</div>
+        <h3 id="premiumTitle">프리미엄은 준비 중이에요</h3>
+        <p>두루마리 프리미엄과 실물 제작은 정식 출시와 함께 열립니다.
+          지금은 무료 테마와 스티커로 마음껏 꾸며 보세요. 출시되면 이 자리에서 바로 결제할 수 있게 연결할 예정이에요.</p>
+        <div class="m-actions">
+          <button type="button" class="btn btn-primary btn-sm" data-close>알겠어요</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast" id="toast" role="status"></div>
+
+    <script>
+      (function () {
+        "use strict";
+        var $ = function (s, el) { return (el || document).querySelector(s); };
+        var $$ = function (s, el) { return Array.prototype.slice.call((el || document).querySelectorAll(s)); };
+
+        /* ---------------- data ---------------- */
+        var THEMES = {
+          school:  { label: "🎓 학교 · 졸업", sub: "🎓 학교 · 졸업 — 함께한 교실, 잊지 못할 거예요" },
+          office:  { label: "💼 회사 · 퇴사", sub: "💼 회사 · 퇴사 — 그동안 함께여서 든든했어요" },
+          party:   { label: "🎂 생일 · 축하", sub: "🎂 생일 · 축하 — 오늘의 주인공은 바로 당신" },
+          friends: { label: "🧸 동아리 · 친구", sub: "🧸 동아리 · 친구 — 우리 모임의 마음이 여기 다 모였어요" },
+          family:  { label: "🏠 가족 · 기념일", sub: "🏠 가족 · 기념일 — 말로 다 못 할 사랑을 담아" }
+        };
+        var INKS = ["#35322c", "#2f4b9e", "#b23a2a", "#3f7a4e", "#7a4a8a", "#8a5a1d"];
+        var EMOJIS = ["😊","🥰","😭","🎉","🌸","🍀","⭐","🎂","💌","🙏","💪","☕","🌈","🔥","👏","🫶"];
+        var STICKERS_FREE = ["🌷","🧸","🎈","🍰","🐰","🐱","🌈","☁️","🍓","🎵","💛","✿"];
+        var STICKERS_PREMIUM = ["🦋","🍩","🐣","🎁","👑","💎"];
+        var FONTS = ["font-pen","font-gaegu","font-gamja","font-dodum"];
+
+        function n(text, from, pen, font, stickers) {
+          return { text: text, from: from, pen: pen, font: font, stickers: stickers || [], px: null, py: null, free: false };
+        }
+
+        var PAPERS = {
+          main: {
+            recipient: "김민준 님", theme: "office", mine: true,
+            notes: [
+              n("민준 님, 3년 동안 옆자리에서 얼마나 든든했는지 몰라요. 급한 배포 날마다 웃으면서 도와주셔서 정말 감사했습니다. 새 회사에서도 지금처럼 빛나세요!", "같은 팀 서연", "#ffd6e0", "font-pen", ["🌷"], 4, 15, -2),
+              n("점심 메뉴 고르기 챔피언이 떠나네요… 그동안 고생 많으셨고, 가끔 우리 팀 회식에도 놀러 와요. 커피는 제가 살게요 ☕", "막내 지훈", "#cfe4ff", "font-gaegu", ["☁️"], 30, 13, 1.5),
+              n("민준 님 덕분에 우리 팀 코드 리뷰 문화가 생겼어요. 배운 거 평생 써먹을게요. 어디 가서도 건강이 최우선입니다!", "백엔드 동료 태오", "#cdeac0", "font-pen", ["🍀","⭐"], 56, 16, -1),
+              n("첫 출근날 길 헤매던 저를 데리러 와 주셨던 거, 아직도 기억해요. 그 다정함 꼭 돌려받을 거예요. 응원합니다 🙏", "인사팀 유나", "#fff3b0", "font-gamja", ["💛"], 16, 52, 2),
+              n("프로젝트 마지막 밤, 같이 라면 끓여 먹던 게 벌써 추억이네요. 새 출발 진심으로 축하해요. 자주 연락해요!", "디자이너 하늘", "#ffe3c2", "font-pen", ["🎈"], 44, 54, -2.4),
+              n("말수는 적어도 결정적일 때 늘 정답을 주던 분. 민준 님의 빈자리가 크겠지만, 앞길은 더 클 거예요. 화이팅 💪", "팀장 재민", "#e7dcff", "font-dodum", ["⭐"], 70, 52, 1)
+            ]
+          },
+          grad: {
+            recipient: "3학년 2반 친구들", theme: "school", mine: false,
+            notes: [
+              n("졸업 축하해! 급식 줄 서서 나누던 시답잖은 농담들이 제일 그리울 것 같아. 대학 가서도 연락 자주 하자!", "짝꿍 수아", "#fff3b0", "font-pen", ["🌸"], 5, 15, -2),
+              n("3년 동안 반 분위기 메이커여서 고마웠어. 네 웃음소리 덕분에 월요일도 버텼다 ㅋㅋ 졸업해도 우리 단톡방은 영원히!", "반장 도윤", "#cdeac0", "font-gaegu", ["⭐"], 31, 14, 1.6),
+              n("시험 기간에 필기 공유해 준 거 진짜 잊지 못해… 덕분에 과학 붙었다 ㅠㅠ 고마워, 꼭 보답할게!", "하은", "#ffd6e0", "font-pen", ["💌"], 57, 16, -1.2),
+              n("졸업은 끝이 아니라 시작이래. 각자 다른 교실에 가도, 우리 추억은 이 두루마리 안에 그대로야 🍀", "서준", "#cfe4ff", "font-gamja", ["🍀"], 18, 53, 2.2),
+              n("선생님 말씀 잘 듣는 척 연기 대상감… 농담이고, 항상 밝아서 좋았어. 앞날을 응원해!", "민서", "#ffe3c2", "font-pen", ["🎈"], 46, 54, -2),
+              n("졸업식 날 울지 않기 미션 실패 확정. 그래도 사진은 웃으면서 찍자. 사랑한다 친구들아!", "지민", "#e7dcff", "font-gaegu", ["🧸"], 71, 52, 1)
+            ]
+          },
+          mom: {
+            recipient: "사랑하는 엄마", theme: "family", mine: false,
+            notes: [
+              n("엄마, 생신 축하드려요. 표현이 서툴러서 평소엔 못 했던 말, 여기에 다 적어요. 늘 건강하세요. 사랑해요 🌷", "딸 지현", "#ffd6e0", "font-pen", ["🌷","💛"], 6, 15, -1.6),
+              n("여보, 고생 많았어요. 당신이 있어서 우리 집이 집다워요. 올해는 꼭 둘이 여행 갑시다.", "아빠", "#fff3b0", "font-dodum", ["☁️"], 33, 14, 1.4),
+              n("할머니! 생일 축하해요. 할머니 김치찌개가 세상에서 제일 맛있어요. 오래오래 같이 살아요 🍰", "손자 도현", "#cdeac0", "font-gamja", ["🍰"], 59, 16, -2.2),
+              n("언니 같은 엄마라서 친구들이 다 부러워해요. 앞으로는 제가 더 자주 전화할게요. 효도 시작!", "막내 서아", "#ffe3c2", "font-gaegu", ["🎈"], 20, 53, 2),
+              n("어머니, 며느리가 아니라 딸처럼 대해 주셔서 감사합니다. 생신 진심으로 축하드려요 🙏", "며느리 수진", "#cfe4ff", "font-pen", ["🌸"], 47, 54, -1),
+              n("엄마의 웃는 얼굴이 우리 가족의 해예요. 올해도 활짝 웃는 한 해 되세요 ☀️", "아들 현우", "#e7dcff", "font-pen", ["⭐"], 72, 52, 1.8)
+            ]
+          },
+          club: {
+            recipient: "사진동아리 '찰칵' 회장님", theme: "friends", mine: false,
+            notes: [
+              n("회장님 1년 동안 출사 일정 짜느라 고생 많았어요! 덕분에 인생샷 백 장은 건졌습니다 📷", "부회장 리아", "#fff3b0", "font-gaegu", ["⭐"], 5, 15, -2),
+              n("비 오는 날 우산 씌워 주면서 카메라 지켜 준 거 평생 자랑할 거예요. 감사했어요!", "신입 멤버 준혁", "#cfe4ff", "font-pen", ["☁️"], 31, 14, 1.5),
+              n("회장님 덕분에 사진이 취미가 됐어요. 다음 학기에도 같이 찍으러 다녀요 🧸", "민채", "#ffd6e0", "font-gamja", ["🧸"], 57, 16, -1.4),
+              n("전시회 밤샘 준비 잊지 못해요. 우리 동아리 최고! 회장님도 최고!", "총무 예린", "#cdeac0", "font-pen", ["🍀"], 18, 53, 2.1),
+              n("필름 스캔 맡길 때마다 귀찮아도 다 해 주셔서 감사해요. 밥 한 번 살게요!", "고인물 성민", "#ffe3c2", "font-dodum", ["🎵"], 46, 54, -2.3),
+              n("찰칵 소리처럼 반짝이는 1년이었습니다. 수고하셨어요 회장님 🎉", "동아리원 모두", "#e7dcff", "font-gaegu", ["🎈"], 71, 52, 1.2)
+            ]
+          },
+          teacher: {
+            recipient: "담임 선생님", theme: "school", mine: false,
+            notes: [
+              n("선생님, 한 해 동안 저희 반을 맡아 주셔서 감사합니다. 선생님 수업 덕분에 과학이 제일 좋아졌어요!", "3학년 2반 민서", "#35322c", "font-pen", ["🌸"], 0, 0, 0),
+              n("졸업해도 선생님 말씀 잊지 않을게요. 늘 건강하세요!", "반장 도윤", "#2f4b9e", "font-gaegu", ["⭐"], 0, 0, 0),
+              n("항상 먼저 웃어 주셔서 감사했어요. 선생님이 제 롤모델이에요 🌸", "수아", "#b23a2a", "font-pen", [], 0, 0, 0),
+              n("무서운 줄 알았는데 제일 다정하셨던 선생님. 감사합니다!", "서준", "#3f7a4e", "font-gamja", ["🍀"], 0, 0, 0)
+            ]
+          },
+          lead: {
+            recipient: "재민 팀장님", theme: "party", mine: false,
+            notes: [
+              n("팀장님 생일 축하드립니다! 늘 팀원들 먼저 챙겨 주셔서 감사해요 🎂", "개발팀 서연", "#35322c", "font-pen", ["🎈"], 0, 0, 0),
+              n("올해도 건강하시고, 회식은 팀장님 카드 말고 법인카드로 해요 ㅋㅋ 축하드려요!", "지훈", "#2f4b9e", "font-gaegu", [], 0, 0, 0),
+              n("리더십 본받고 싶습니다. 생일 진심으로 축하드려요!", "태오", "#b23a2a", "font-dodum", ["⭐"], 0, 0, 0),
+              n("든든한 팀장님 덕분에 프로젝트가 굴러갑니다. 감사합니다 🙏", "유나", "#3f7a4e", "font-pen", [], 0, 0, 0)
+            ]
+          }
+        };
+
+        /* -------- data model: one person, many memberships --------
+           A person (ME) holds several memberships (school / office /
+           club / family). Every paper belongs to one membership. */
+        var ME = { name: "김민지" };
+        var MEMBERSHIPS = [
+          { id: "school", icon: "🎓", type: "학교", name: "서연고등학교 3학년 2반" },
+          { id: "office", icon: "💼", type: "회사", name: "IT 서비스 개발팀" },
+          { id: "club", icon: "📷", type: "동호회", name: "사진동아리 찰칵" },
+          { id: "family", icon: "🏠", type: "가족", name: "우리 가족" }
+        ];
+        function membership(id) {
+          for (var i = 0; i < MEMBERSHIPS.length; i++) if (MEMBERSHIPS[i].id === id) return MEMBERSHIPS[i];
+          return MEMBERSHIPS[0];
+        }
+        PAPERS.main.group = "office";
+        PAPERS.grad.group = "school";
+        PAPERS.teacher.group = "school";
+        PAPERS.lead.group = "office";
+        PAPERS.club.group = "club";
+        PAPERS.mom.group = "family";
+
+        var INBOX = [
+          { id: "grad", group: "school", theme: "school", color: "#5d7d5a", title: "졸업 두루마리", from: "3학년 2반 친구들", date: "2026년 2월", count: 6, desc: "졸업식 날, 반 친구들의 마음이 말려 도착했어요." },
+          { id: "teacher", group: "school", theme: "school", color: "#5d7d5a", title: "스승의 날 감사 두루마리", from: "3학년 2반 학생들", date: "2026년 5월", count: 4, desc: "반 학생들이 한 줄씩 적어 담임 선생님께 전한 마음." },
+          { id: "lead", group: "office", theme: "party", color: "#33549e", title: "팀장님 생일 두루마리", from: "IT 서비스 개발팀", date: "2026년 8월", count: 4, desc: "팀원들이 몰래 모아 건넨 생일 축하 두루마리." },
+          { id: "mom", group: "family", theme: "family", color: "#d9501e", title: "엄마 생신 두루마리", from: "우리 가족 모두", date: "2026년 5월", count: 6, desc: "온 가족이 돌아가며 쓴, 세상에서 하나뿐인 생신 선물." },
+          { id: "club", group: "club", theme: "friends", color: "#c99a2e", title: "동아리 회장님 감사 두루마리", from: "사진동아리 찰칵", date: "2026년 9월", count: 6, desc: "한 학기를 함께한 동아리원들의 감사 인사 모음." }
+        ];
+
+        /* ---------------- state ---------------- */
+        var state = {
+          paperId: "main",
+          theme: "office",
+          pen: INKS[0],
+          font: "font-pen"
+        };
+
+        var board = $("#board"), sheet = $("#sheet"), boardTo = $("#boardTo"), boardSub = $("#boardSub"),
+            boardEmpty = $("#boardEmpty"), noteCount = $("#noteCount"),
+            recipientInput = $("#recipient"), authorInput = $("#author"),
+            messageInput = $("#message"), charCount = $("#charCount"),
+            pvText = $("#pvText"), pvFrom = $("#pvFrom"),
+            toast = $("#toast");
+
+        var toastTimer = null;
+        function showToast(msg) {
+          toast.textContent = msg;
+          toast.classList.add("show");
+          clearTimeout(toastTimer);
+          toastTimer = setTimeout(function () { toast.classList.remove("show"); }, 2600);
+        }
+
+        /* ---------------- pickers ---------------- */
+        EMOJIS.forEach(function (e) {
+          var b = document.createElement("button");
+          b.type = "button"; b.textContent = e; b.setAttribute("aria-label", "이모지 " + e);
+          b.addEventListener("click", function () { insertEmoji(e); });
+          $("#emojiRow").appendChild(b);
+        });
+        function insertEmoji(e) {
+          var ta = messageInput, start = ta.selectionStart || 0, end = ta.selectionEnd || 0;
+          var val = ta.value;
+          if (val.length >= 200) { showToast("쪽지는 200자까지 쓸 수 있어요."); return; }
+          ta.value = val.slice(0, start) + e + val.slice(end);
+          var pos = start + e.length;
+          ta.focus(); ta.setSelectionRange(pos, pos);
+          updatePreview();
+        }
+
+        /* stickers: free-floating on the sheet */
+        function buildStickers() {
+          var row = $("#stickerRow"); row.innerHTML = "";
+          STICKERS_FREE.forEach(function (s) { row.appendChild(stickerBtn(s, false)); });
+          STICKERS_PREMIUM.forEach(function (s) { row.appendChild(stickerBtn(s, true)); });
+        }
+        function stickerBtn(s, premium) {
+          var b = document.createElement("button");
+          b.type = "button"; b.textContent = premium ? s + "🔒" : s;
+          b.setAttribute("aria-label", "스티커 " + s);
+          if (premium) b.classList.add("locked");
+          b.addEventListener("click", function () {
+            if (premium) { openOverlay("#premiumOverlay"); return; }
+            addFreeSticker(s);
+          });
+          return b;
+        }
+        buildStickers();
+
+        function addFreeSticker(e) {
+          var paper = PAPERS[state.paperId];
+          if (!paper.stickers) paper.stickers = [];
+          var st = {
+            e: e,
+            x: Math.round((6 + Math.random() * 80) * 10) / 10,
+            y: Math.round((20 + Math.random() * 55) * 10) / 10,
+            size: 26 + Math.round(Math.random() * 16),
+            rot: Math.round(Math.random() * 24 - 12)
+          };
+          paper.stickers.push(st);
+          sheet.appendChild(makeStickerEl(st, paper));
+          showToast("스티커를 전지에 붙였어요. 드래그해서 옮겨 보세요.");
+          sheet.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+
+        function makeStickerEl(st, paper) {
+          var el = document.createElement("div");
+          el.className = "f-sticker";
+          el.textContent = st.e;
+          el.style.left = st.x + "%"; el.style.top = st.y + "%";
+          el.style.fontSize = st.size + "px";
+          el.style.transform = "rotate(" + st.rot + "deg)";
+          var del = document.createElement("button");
+          del.type = "button"; del.className = "fs-del"; del.textContent = "✕";
+          del.setAttribute("aria-label", "스티커 떼기");
+          del.addEventListener("pointerdown", function (ev) { ev.stopPropagation(); });
+          del.addEventListener("click", function (ev) {
+            ev.stopPropagation();
+            var i = paper.stickers.indexOf(st);
+            if (i >= 0) paper.stickers.splice(i, 1);
+            el.remove();
+            showToast("스티커를 떼어냈어요.");
+          });
+          el.appendChild(del);
+          el.addEventListener("pointerdown", function (ev) {
+            ev.preventDefault();
+            var rect = sheet.getBoundingClientRect();
+            var startX = ev.clientX, startY = ev.clientY;
+            var origX = st.x, origY = st.y;
+            el.style.zIndex = 40;
+            function move(e2) {
+              st.x = Math.min(95, Math.max(0, origX + (e2.clientX - startX) / rect.width * 100));
+              st.y = Math.min(96, Math.max(0, origY + (e2.clientY - startY) / rect.height * 100));
+              el.style.left = st.x + "%"; el.style.top = st.y + "%";
+            }
+            function up() {
+              window.removeEventListener("pointermove", move);
+              window.removeEventListener("pointerup", up);
+              el.style.zIndex = 6;
+            }
+            window.addEventListener("pointermove", move);
+            window.addEventListener("pointerup", up);
+          });
+          return el;
+        }
+
+        INKS.forEach(function (c, i) {
+          var b = document.createElement("button");
+          b.type = "button"; b.className = "swatch" + (i === 0 ? " on" : "");
+          b.style.background = c; b.setAttribute("aria-label", "펜 색상");
+          b.addEventListener("click", function () {
+            state.pen = c;
+            $$("#swatches .swatch").forEach(function (x) { x.classList.remove("on"); });
+            b.classList.add("on"); updatePreview();
+          });
+          $("#swatches").appendChild(b);
+        });
+
+        $$("#fontChips .chip").forEach(function (chip) {
+          chip.addEventListener("click", function () {
+            state.font = chip.getAttribute("data-font");
+            $$("#fontChips .chip").forEach(function (x) { x.classList.remove("on"); });
+            chip.classList.add("on"); updatePreview();
+          });
+        });
+        $$("#themeChips .chip").forEach(function (chip) {
+          chip.addEventListener("click", function () { setTheme(chip.getAttribute("data-theme")); });
+        });
+
+        function setTheme(t) {
+          state.theme = t;
+          var paper = PAPERS[state.paperId];
+          if (paper.mine) paper.theme = t;
+          $$("#themeChips .chip").forEach(function (x) {
+            x.classList.toggle("on", x.getAttribute("data-theme") === t);
+          });
+          board.setAttribute("data-theme", t);
+          boardSub.textContent = THEMES[t].sub;
+        }
+
+        /* ---------------- preview ---------------- */
+        function updatePreview() {
+          var txt = messageInput.value;
+          charCount.textContent = txt.length;
+          pvText.textContent = txt || "여기에 마음이 미리 보여요.";
+          pvText.className = "pv-text " + state.font;
+          pvText.style.color = state.pen;
+          pvFrom.textContent = "— " + (authorInput.value.trim() || "나");
+        }
+        messageInput.addEventListener("input", updatePreview);
+        authorInput.addEventListener("input", updatePreview);
+        recipientInput.addEventListener("input", function () {
+          var v = recipientInput.value.trim() || "소중한 당신";
+          boardTo.textContent = "To. " + v;
+          $("#boardTitle").textContent = v + "의 두루마리";
+          if (PAPERS[state.paperId].mine) PAPERS[state.paperId].recipient = v;
+        });
+        updatePreview();
+
+        /* ---------------- sheet rendering ----------------
+           One big white sheet: every message is scattered at a random
+           spot, angle and size, like friends writing freely on paper.
+           Collision checks keep handwriting readable; the sheet grows. */
+        var topZ = 20;
+        var SEED_STICKERS = {
+          main: [ { e: "🌸", x: 85, y: 13, size: 30, rot: 8 }, { e: "⭐", x: 4, y: 68, size: 26, rot: -10 } ],
+          grad: [ { e: "🎈", x: 85, y: 20, size: 30, rot: 6 }, { e: "✿", x: 5, y: 40, size: 26, rot: -6 } ],
+          mom:  [ { e: "🌷", x: 85, y: 14, size: 32, rot: 5 }, { e: "💛", x: 6, y: 74, size: 26, rot: -8 } ],
+          club: [ { e: "🧸", x: 85, y: 66, size: 32, rot: 10 }, { e: "🎵", x: 4, y: 18, size: 26, rot: -6 } ]
+        };
+        function ensureNoteStyle(note, idx, W) {
+          if (note.w != null) return;
+          var small = W < 520;
+          note.w = Math.round(small ? 138 + Math.random() * 52 : 182 + Math.random() * 72);
+          var base = { "font-pen": 21, "font-gaegu": 17, "font-gamja": 19, "font-dodum": 15 }[note.font] || 19;
+          note.fs = base + Math.round(Math.random() * 4 - 1);
+          note.rot = Math.round((Math.random() * 9 - 4.5) * 10) / 10;
+          if (!note.penChosen) note.pen = INKS[(idx * 7 + 2) % INKS.length];
+        }
+        function scatterLayout() {
+          var paper = PAPERS[state.paperId];
+          var els = $$(".note", sheet);
+          if (!els.length) { sheet.style.height = "620px"; return; }
+          var W = sheet.clientWidth || 700;
+          var startY = 126;
+          var placed = [];
+          var maxBottom = startY;
+          function hits(x, y, w, h) {
+            for (var i = 0; i < placed.length; i++) {
+              var r = placed[i];
+              if (x < r.x + r.w + 10 && x + w + 10 > r.x && y < r.y + r.h + 10 && y + h + 10 > r.y) return true;
+            }
+            return false;
+          }
+          els.forEach(function (el, i) {
+            var note = paper.notes[i];
+            ensureNoteStyle(note, i, W);
+            el.style.width = note.w + "px";
+            el.style.fontSize = note.fs + "px";
+            el.style.color = note.pen;
+            el.style.transform = "rotate(" + note.rot + "deg)";
+            var txEl = el.querySelector(".n-text");
+            if (txEl) txEl.style.fontSize = note.fs + "px";
+            var w = el.offsetWidth, h = el.offsetHeight;
+            if (note.free && note.px != null) {
+              el.style.left = note.px + "px"; el.style.top = note.py + "px";
+              placed.push({ x: note.px, y: note.py, w: w, h: h });
+              if (note.py + h > maxBottom) maxBottom = note.py + h;
+              return;
+            }
+            var spot = null;
+            for (var t = 0; t < 70; t++) {
+              var x = 12 + Math.random() * Math.max(8, W - w - 24);
+              var y = startY + Math.random() * Math.max(8, Math.max(640, maxBottom + 60) - startY - h - 24);
+              if (!hits(x, y, w, h)) { spot = { x: x, y: y }; break; }
+            }
+            if (!spot) spot = { x: 12 + Math.random() * Math.max(8, W - w - 24), y: maxBottom + 18 };
+            note.px = Math.round(spot.x); note.py = Math.round(spot.y);
+            el.style.left = note.px + "px"; el.style.top = note.py + "px";
+            placed.push({ x: note.px, y: note.py, w: w, h: h });
+            if (note.py + h > maxBottom) maxBottom = note.py + h;
+          });
+          sheet.style.height = Math.max(620, maxBottom + 70) + "px";
+        }
+        var resizeTimer = null;
+        window.addEventListener("resize", function () {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(function () {
+            PAPERS[state.paperId].notes.forEach(function (nt) { if (!nt.free) nt.px = null; });
+            scatterLayout();
+          }, 180);
+        });
+        function renderBoard() {
+          var paper = PAPERS[state.paperId];
+          $$(".note", sheet).forEach(function (el) { el.remove(); });
+          $$(".f-sticker", sheet).forEach(function (el) { el.remove(); });
+          board.setAttribute("data-theme", paper.theme);
+          boardTo.textContent = "To. " + paper.recipient;
+          boardSub.textContent = THEMES[paper.theme].sub;
+          $("#boardTitle").textContent = paper.recipient + "의 두루마리";
+          if (paper.mine) {
+            recipientInput.value = paper.recipient;
+            setTheme(paper.theme);
+          } else {
+            $$("#themeChips .chip").forEach(function (x) {
+              x.classList.toggle("on", x.getAttribute("data-theme") === paper.theme);
+            });
+          }
+          paper.notes.forEach(function (note, idx) { sheet.appendChild(makeNoteEl(note, idx)); });
+          if (!paper.stickers) {
+            paper.stickers = (SEED_STICKERS[state.paperId] || []).map(function (s) {
+              return { e: s.e, x: s.x, y: s.y, size: s.size, rot: s.rot };
+            });
+          }
+          paper.stickers.forEach(function (st) { sheet.appendChild(makeStickerEl(st, paper)); });
+          scatterLayout();
+          boardEmpty.hidden = paper.notes.length > 0;
+          noteCount.textContent = "글 " + paper.notes.length + "개";
+          refreshInviteLink();
+        }
+
+        function makeNoteEl(note, idx) {
+          var el = document.createElement("article");
+          el.className = "note";
+          el.style.left = "12px"; el.style.top = "126px";
+          el.style.zIndex = 5 + idx;
+          el.setAttribute("data-idx", idx);
+          el.addEventListener("click", function () {
+            $$(".note", sheet).forEach(function (x) { x.classList.remove("focused"); });
+            el.classList.add("focused");
+            el.style.zIndex = ++topZ;
+          });
+
+          if (note.stickers && note.stickers.length) {
+            var st = document.createElement("div");
+            st.className = "n-stickers"; st.textContent = note.stickers.join("");
+            el.appendChild(st);
+          }
+          var tx = document.createElement("div");
+          tx.className = "n-text " + note.font; tx.textContent = note.text;
+          el.appendChild(tx);
+          var fr = document.createElement("div");
+          fr.className = "n-from"; fr.textContent = "— " + note.from;
+          el.appendChild(fr);
+
+          var del = document.createElement("button");
+          del.type = "button"; del.className = "n-del"; del.textContent = "✕";
+          del.setAttribute("aria-label", "글 지우기");
+          del.addEventListener("pointerdown", function (ev) { ev.stopPropagation(); });
+          del.addEventListener("click", function (ev) {
+            ev.stopPropagation();
+            var paper = PAPERS[state.paperId];
+            paper.notes.splice(idx, 1);
+            renderBoard();
+            showToast("글을 지웠어요.");
+          });
+          el.appendChild(del);
+
+          /* drag the handwriting anywhere on the sheet */
+          el.addEventListener("pointerdown", function (ev) {
+            if (ev.target === del) return;
+            ev.preventDefault();
+            if (!note.free || note.px == null) {
+              note.px = el.offsetLeft; note.py = el.offsetTop;
+              note.free = true;
+            }
+            var rect = sheet.getBoundingClientRect();
+            var startX = ev.clientX, startY = ev.clientY;
+            var origX = note.px, origY = note.py;
+            el.style.zIndex = 60;
+            function move(e2) {
+              note.px = Math.round(Math.min(rect.width - 50, Math.max(0, origX + (e2.clientX - startX))));
+              note.py = Math.round(Math.min(rect.height - 30, Math.max(84, origY + (e2.clientY - startY))));
+              el.style.left = note.px + "px";
+              el.style.top = note.py + "px";
+            }
+            function up() {
+              window.removeEventListener("pointermove", move);
+              window.removeEventListener("pointerup", up);
+              el.style.zIndex = 5 + idx;
+              scatterLayout();
+            }
+            window.addEventListener("pointermove", move);
+            window.addEventListener("pointerup", up);
+          });
+          return el;
+        }
+
+        /* add note */
+        $("#addNoteBtn").addEventListener("click", function () {
+          var txt = messageInput.value.trim();
+          if (!txt) { showToast("마음을 한 줄이라도 적어 주세요."); messageInput.focus(); return; }
+          var paper = PAPERS[state.paperId];
+          if (!paper.mine && !paper.writebackFor) {
+            paper = PAPERS.main; state.paperId = "main";
+            showToast("내 두루마리 전지에 적었어요.");
+          }
+          var newNote = n(txt, authorInput.value.trim() || "익명의 마음", state.pen, state.font, []);
+          newNote.penChosen = true;
+          paper.notes.push(newNote);
+          renderBoard();
+          messageInput.value = "";
+          updatePreview();
+          if (paper.writebackFor && paper.writebackFor.status !== "작성 완료") {
+            paper.writebackFor.status = "작성 완료";
+            renderRequests();
+            showToast("맞롤링 작성 완료! 요청함에서 상태가 바뀌었어요.");
+          } else if (guest) {
+            showToast("글이 전달됐어요! 받는 분이 두루마리를 열면 볼 수 있어요.");
+          } else {
+            showToast("전지에 글이 적혔어요 ✿");
+          }
+          sheet.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        });
+
+        /* re-scatter */
+        $("#shuffleBtn").addEventListener("click", function () {
+          var paper = PAPERS[state.paperId];
+          paper.notes.forEach(function (note) {
+            note.free = false; note.px = null; note.py = null; note.w = null;
+          });
+          renderBoard();
+          showToast("글을 전지에 다시 흩뿌렸어요.");
+        });
+
+        /* ---------------- short links ---------------- */
+        function shortLink(kind) {
+          var chars = "abcdefghjkmnpqrstuvwxyz23456789", s = "";
+          for (var i = 0; i < 5; i++) s += chars[Math.floor(Math.random() * chars.length)];
+          return "duru.mari/" + kind + "/" + s;
+        }
+        function copyText(text, msg) {
+          function done() { showToast(msg); }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(done, function () { fallbackCopy(text); done(); });
+          } else { fallbackCopy(text); done(); }
+        }
+
+        /* ---------------- inbox: profile, membership tabs ---------------- */
+        var inboxFilter = "all";
+        function renderMemberChips() {
+          var box = $("#memberChips"); box.innerHTML = "";
+          MEMBERSHIPS.forEach(function (m) {
+            var b = document.createElement("button");
+            b.type = "button"; b.className = "chip";
+            b.textContent = m.icon + " " + m.name;
+            b.addEventListener("click", function () { setInboxFilter(m.id); });
+            box.appendChild(b);
+          });
+        }
+        function renderInboxTabs() {
+          var box = $("#inboxTabs"); box.innerHTML = "";
+          var defs = [{ id: "all", label: "전체" }].concat(MEMBERSHIPS.map(function (m) {
+            return { id: m.id, label: m.icon + " " + m.type };
+          }));
+          defs.forEach(function (d) {
+            var b = document.createElement("button");
+            b.type = "button"; b.className = "tab" + (inboxFilter === d.id ? " on" : "");
+            b.textContent = d.label;
+            b.addEventListener("click", function () { setInboxFilter(d.id); });
+            box.appendChild(b);
+          });
+        }
+        function setInboxFilter(id) {
+          inboxFilter = id;
+          renderInboxTabs();
+          renderInbox();
+        }
+        function renderInbox() {
+          var grid = $("#inboxGrid");
+          grid.innerHTML = "";
+          INBOX.filter(function (item) { return inboxFilter === "all" || item.group === inboxFilter; })
+            .forEach(function (item) {
+              var m = membership(item.group);
+              var card = document.createElement("button");
+              card.type = "button"; card.className = "paper-card";
+              card.style.setProperty("--pc", item.color);
+              card.innerHTML =
+                '<div class="pc-theme">' + THEMES[item.theme].label + "</div>" +
+                '<div class="pc-group">' + m.icon + " " + m.name + "</div>" +
+                "<h3>" + item.title + "</h3><p>" + item.desc + "</p>" +
+                '<div class="pc-meta"><span>보낸 이 · ' + item.from + "</span><span>" + item.date + "</span><span>글 " + item.count + "개</span></div>" +
+                '<div class="pc-open">두루마리 펼쳐 보기 →</div>';
+              card.addEventListener("click", function () {
+                state.paperId = item.id;
+                renderBoard();
+                document.getElementById("studio").scrollIntoView({ behavior: "smooth" });
+                showToast("'" + item.title + "'을 펼쳤어요. 스튜디오에서 감상하세요.");
+              });
+              grid.appendChild(card);
+            });
+        }
+        renderMemberChips();
+        renderInboxTabs();
+        renderInbox();
+
+        /* ---------------- mutual rolling requests ---------------- */
+        var REQUESTS = [
+          { type: "received", from: "이서연", group: "office", status: "미작성", link: shortLink("r") },
+          { type: "sent", to: "김민준", group: "office", status: "대기 중", link: shortLink("r") }
+        ];
+        function renderRequests() {
+          var list = $("#requestList");
+          list.innerHTML = "";
+          REQUESTS.forEach(function (rq) {
+            var card = document.createElement("div");
+            card.className = "request-card";
+            var icon = document.createElement("div");
+            icon.className = "rq-icon"; icon.textContent = rq.type === "received" ? "📩" : "📤";
+            var body = document.createElement("div");
+            var h = document.createElement("h4");
+            h.textContent = rq.type === "received"
+              ? rq.from + " 님이 내 두루마리를 요청했어요"
+              : rq.to + " 님에게 맞롤링 요청을 보냈어요";
+            var p = document.createElement("p");
+            var m = membership(rq.group);
+            p.textContent = m.icon + " " + m.name + " · 요청 링크 " + rq.link;
+            body.appendChild(h); body.appendChild(p);
+            var status = document.createElement("span");
+            status.className = "rq-status" + (rq.status === "작성 완료" ? " done" : "");
+            status.textContent = rq.status;
+            var actions = document.createElement("div");
+            actions.className = "rq-actions";
+            if (rq.type === "received" && rq.status !== "작성 완료") {
+              var writeBtn = document.createElement("button");
+              writeBtn.type = "button"; writeBtn.className = "btn btn-primary btn-sm";
+              writeBtn.textContent = "바로 써주기";
+              writeBtn.addEventListener("click", function () { openWriteBack(rq); });
+              actions.appendChild(writeBtn);
+            }
+            if (rq.type === "sent") {
+              var resendBtn = document.createElement("button");
+              resendBtn.type = "button"; resendBtn.className = "btn btn-ghost btn-sm";
+              resendBtn.textContent = "링크 다시 보내기";
+              resendBtn.addEventListener("click", function () {
+                copyText("[두루마리] " + ME.name + " 님을 위한 롤링페이퍼가 기다리고 있어요. 링크 하나로 바로 쓸 수 있어요 → " + rq.link,
+                  "요청 링크가 복사됐어요. 카톡으로 다시 보내 보세요.");
+              });
+              actions.appendChild(resendBtn);
+            }
+            card.appendChild(icon); card.appendChild(body); card.appendChild(status); card.appendChild(actions);
+            list.appendChild(card);
+          });
+        }
+        function openWriteBack(rq) {
+          var id = "wb-" + Date.now();
+          PAPERS[id] = {
+            recipient: rq.from, theme: "office", mine: false, group: rq.group,
+            notes: [], writebackFor: rq
+          };
+          state.paperId = id;
+          renderBoard();
+          document.getElementById("studio").scrollIntoView({ behavior: "smooth" });
+          showToast(rq.from + " 님을 위한 두루마리를 펼쳤어요. 첫 글을 적어 보세요.");
+        }
+        renderRequests();
+
+        /* ---------------- one-link invite + guest write mode ---------------- */
+        function currentInviteLink() {
+          var paper = PAPERS[state.paperId];
+          if (!paper.link) paper.link = shortLink("p");
+          return paper.link;
+        }
+        function refreshInviteLink() { $("#inviteLink").textContent = currentInviteLink(); }
+        $("#copyLinkBtn").addEventListener("click", function () {
+          var paper = PAPERS[state.paperId];
+          copyText("[두루마리] " + paper.recipient + " 님의 롤링페이퍼가 열렸어요 → " + currentInviteLink(),
+            "초대 링크가 복사됐어요. 친구에게 보내 보세요!");
+        });
+        $("#kakaoShareBtn").addEventListener("click", function () {
+          var paper = PAPERS[state.paperId];
+          copyText("[두루마리] " + paper.recipient + " 님에게 마음을 전해요 💌 링크 하나로 바로 쓸 수 있어요 → " + currentInviteLink(),
+            "카카오톡에 붙여넣을 초대 문구가 복사됐어요.");
+        });
+        var guest = false;
+        function enterGuest() {
+          guest = true;
+          state.paperId = "main";
+          renderBoard();
+          $("#guestBanner").classList.add("show");
+          $("#guestHost").textContent = PAPERS.main.recipient;
+          recipientInput.disabled = true;
+          $$("#themeChips .chip").forEach(function (ch) { ch.disabled = true; });
+          $("#addNoteBtn").textContent = "✎ 글 남기기";
+          document.getElementById("studio").scrollIntoView({ behavior: "smooth" });
+          showToast("초대 링크로 들어온 친구 화면이에요. 가입 없이 바로 쓸 수 있어요.");
+          messageInput.focus();
+        }
+        function exitGuest() {
+          guest = false;
+          $("#guestBanner").classList.remove("show");
+          recipientInput.disabled = false;
+          $$("#themeChips .chip").forEach(function (ch) { ch.disabled = false; });
+          $("#addNoteBtn").textContent = "✎ 전지에 적기";
+          showToast("내 스튜디오로 돌아왔어요.");
+        }
+        $("#guestPreviewBtn").addEventListener("click", enterGuest);
+        $("#exitGuestBtn").addEventListener("click", exitGuest);
+        refreshInviteLink();
+
+        /* back to my paper when typing recipient etc. */
+        recipientInput.addEventListener("focus", function () {
+          if (state.paperId !== "main") { state.paperId = "main"; renderBoard(); }
+        });
+
+        /* ---------------- roll up ---------------- */
+        function openOverlay(sel) { $(sel).classList.add("open"); }
+        function closeOverlays() { sealRun++; $$(".overlay").forEach(function (o) { o.classList.remove("open"); }); }
+        $$(".overlay").forEach(function (o) {
+          o.addEventListener("click", function (e) { if (e.target === o) closeOverlays(); });
+        });
+        $$("[data-close]").forEach(function (b) { b.addEventListener("click", closeOverlays); });
+        document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeOverlays(); });
+
+        /* ---------------- roll up & time capsule ---------------- */
+        var capsule = null;
+        var sealRun = 0;
+        function fmtDate(d) {
+          return d.toLocaleDateString("ko-KR", { year: "numeric", month: "long", day: "numeric", weekday: "short" });
+        }
+        function capsuleDates() {
+          var today = new Date(); today.setHours(0, 0, 0, 0);
+          var open = new Date(today); open.setFullYear(open.getFullYear() + 1);
+          return { today: today, open: open, dday: Math.round((open - today) / 86400000) };
+        }
+        function showRollStage(stage) {
+          $("#rollStageMain").style.display = stage === "main" ? "block" : "none";
+          ["Form", "Seal", "Done", "Request"].forEach(function (s) {
+            $("#rollStage" + s).classList.toggle("show", stage === s.toLowerCase());
+          });
+        }
+        $("#rollBtn").addEventListener("click", function () {
+          var paper = PAPERS[state.paperId];
+          if (!paper.notes.length) { showToast("먼저 전지에 글을 한 줄 적어 주세요."); return; }
+          sealRun++;
+          showRollStage("main");
+          $("#rolledName").textContent = paper.recipient;
+          $("#sealScrollName").textContent = paper.recipient;
+          $("#rollDesc").textContent = "글 " + paper.notes.length + "개가 정성껏 말려, " + paper.recipient + " 님께 전해질 준비를 마쳤습니다.";
+          var d = capsuleDates();
+          $("#sealToday").textContent = fmtDate(d.today);
+          $("#sealOpenDate").textContent = fmtDate(d.open) + " (D-" + d.dday + ")";
+          openOverlay("#rollOverlay");
+          confetti();
+        });
+        $("#toSealBtn").addEventListener("click", function () { showRollStage("form"); });
+        $("#backToMainBtn").addEventListener("click", function () { showRollStage("main"); });
+        /* mutual rolling request */
+        $("#toRequestBtn").addEventListener("click", function () {
+          var paper = PAPERS[state.paperId];
+          if (!state.myRequestLink) state.myRequestLink = shortLink("r");
+          $("#reqTargetName").textContent = paper.recipient;
+          $("#requestLink").textContent = state.myRequestLink;
+          showRollStage("request");
+        });
+        $("#backFromRequestBtn").addEventListener("click", function () { showRollStage("main"); });
+        $("#copyRequestBtn").addEventListener("click", function () {
+          copyText(state.myRequestLink, "요청 링크가 복사됐어요.");
+        });
+        $("#kakaoRequestBtn").addEventListener("click", function () {
+          copyText("[두루마리] 저를 위한 롤링페이퍼도 부탁해요 ↩ 링크 하나로 바로 쓸 수 있어요 → " + state.myRequestLink,
+            "카카오톡에 붙여넣을 요청 문구가 복사됐어요.");
+        });
+        $("#sendRequestBtn").addEventListener("click", function () {
+          var paper = PAPERS[state.paperId];
+          REQUESTS.unshift({
+            type: "sent", to: paper.recipient, group: paper.group || "office",
+            status: "대기 중", link: state.myRequestLink
+          });
+          renderRequests();
+          closeOverlays();
+          showToast(paper.recipient + " 님에게 맞롤링 요청을 보냈어요. 요청함에서 확인할 수 있어요.");
+          document.getElementById("inbox").scrollIntoView({ behavior: "smooth" });
+        });
+        $("#doSealBtn").addEventListener("click", function () {
+          var emailEl = $("#capsuleEmail");
+          var email = emailEl.value.trim();
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            showToast("이메일 주소를 확인해 주세요.");
+            emailEl.focus();
+            return;
+          }
+          var paper = PAPERS[state.paperId];
+          var d = capsuleDates();
+          capsule = {
+            recipient: paper.recipient,
+            count: paper.notes.length,
+            email: email,
+            openDate: d.open,
+            openStr: fmtDate(d.open),
+            dday: d.dday
+          };
+          showRollStage("seal");
+          var run = ++sealRun;
+          var scroll = $("#sealScroll"), wax = $("#waxSeal");
+          scroll.classList.remove("rolling"); wax.classList.remove("stamp");
+          ["sealStep1", "sealStep2", "sealStep3"].forEach(function (id) { $("#" + id).classList.remove("done"); });
+          void scroll.offsetWidth; /* restart animations */
+          scroll.classList.add("rolling");
+          setTimeout(function () { if (run === sealRun) $("#sealStep1").classList.add("done"); }, 450);
+          setTimeout(function () {
+            if (run !== sealRun) return;
+            wax.classList.add("stamp");
+            $("#sealStep2").classList.add("done");
+          }, 1000);
+          setTimeout(function () { if (run === sealRun) $("#sealStep3").classList.add("done"); }, 1550);
+          setTimeout(function () {
+            if (run !== sealRun) return;
+            $("#sealDoneDesc").textContent =
+              paper.recipient + " 님의 두루마리(글 " + capsule.count + "개)가 타임캡슐에 봉인됐어요. " +
+              capsule.openStr + ", " + email + " 으로 다시 열립니다.";
+            showRollStage("done");
+            renderCapsuleCard();
+            confetti();
+          }, 2150);
+        });
+        function renderCapsuleCard() {
+          var area = $("#capsuleArea");
+          area.innerHTML = "";
+          if (!capsule) { area.classList.remove("show"); return; }
+          var card = document.createElement("div");
+          card.className = "capsule-card";
+          var visual = document.createElement("div");
+          visual.className = "cap-visual"; visual.textContent = "🕰";
+          var body = document.createElement("div");
+          var h = document.createElement("h4");
+          h.textContent = "타임캡슐에 봉인된 두루마리";
+          var p = document.createElement("p");
+          p.textContent = "받는 사람 · " + capsule.recipient + " / 글 " + capsule.count + "개" +
+            " · 받는 이메일 · " + capsule.email +
+            " · 열리는 날 · " + capsule.openStr + " (D-" + capsule.dday + ")";
+          body.appendChild(h); body.appendChild(p);
+          var actions = document.createElement("div");
+          actions.className = "cap-actions";
+          var cancel = document.createElement("button");
+          cancel.type = "button"; cancel.className = "btn btn-ghost btn-sm";
+          cancel.textContent = "봉인 취소";
+          cancel.addEventListener("click", function () {
+            capsule = null;
+            renderCapsuleCard();
+            showToast("타임캡슐 봉인을 취소했어요.");
+          });
+          actions.appendChild(cancel);
+          card.appendChild(visual); card.appendChild(body); card.appendChild(actions);
+          area.appendChild(card);
+          area.classList.add("show");
+        }
+        $("#copyInviteBtn").addEventListener("click", function () {
+          var paper = PAPERS[state.paperId];
+          var text = "[두루마리] " + paper.recipient + " 님을 위한 롤링페이퍼를 모으고 있어요. " +
+            "짧은 한 줄이면 충분해요. 마음을 두루 말아 전해주세요 ✿ (쪽지 " + paper.notes.length + "장 모이는 중!)";
+          function done() { showToast("초대 문구가 복사됐어요. 단톡방에 붙여넣어 보세요!"); closeOverlays(); }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(done, function () { fallbackCopy(text); done(); });
+          } else { fallbackCopy(text); done(); }
+        });
+        function fallbackCopy(text) {
+          var ta = document.createElement("textarea");
+          ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+          document.body.appendChild(ta); ta.select();
+          try { document.execCommand("copy"); } catch (e) {}
+          ta.remove();
+        }
+
+        function confetti() {
+          if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+          var colors = ["#d9501e", "#c99a2e", "#5d7d5a", "#ffd6e0", "#cfe4ff", "#fff3b0"];
+          for (var i = 0; i < 36; i++) {
+            var p = document.createElement("div");
+            p.className = "confetti";
+            var size = 5 + Math.random() * 6;
+            p.style.width = size + "px"; p.style.height = size * (0.5 + Math.random()) + "px";
+            p.style.left = Math.random() * 100 + "vw";
+            p.style.background = colors[i % colors.length];
+            document.body.appendChild(p);
+            var drift = (Math.random() - 0.5) * 160;
+            var anim = p.animate([
+              { transform: "translate(0,-10px) rotate(0deg)", opacity: 1 },
+              { transform: "translate(" + drift + "px, 105vh) rotate(" + (Math.random() * 720 - 360) + "deg)", opacity: 0.9 }
+            ], { duration: 2200 + Math.random() * 1600, easing: "cubic-bezier(.2,.7,.4,1)" });
+            (function (el, a) { a.onfinish = function () { el.remove(); }; })(p, anim);
+          }
+        }
+
+        /* premium buttons */
+        $$("[data-premium]").forEach(function (b) {
+          b.addEventListener("click", function () { openOverlay("#premiumOverlay"); });
+        });
+
+        renderBoard();
+      })();
+    </script>
+  </body>
+</html>
